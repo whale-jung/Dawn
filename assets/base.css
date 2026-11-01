@@ -2267,6 +2267,23 @@ input[type='checkbox'] {
   min-height: 3.8rem;
 }
 
+@media screen and (max-width: 749px) {
+  .announcement-bar,
+  .announcement-bar-slider,
+  .announcement-bar__link,
+  .announcement-bar .slider__slide {
+    min-width: 0;
+  }
+
+  .announcement-bar__message {
+    width: 100%;
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
 .announcement-bar-slider--fade-in-next .announcement-bar__message,
 .announcement-bar-slider--fade-in-previous .announcement-bar__message,
 .announcement-bar-slider--fade-out-next .announcement-bar__message,

@@ -24,7 +24,7 @@
         "announcement-bar-0": {
           "type": "announcement",
           "settings": {
-            "text": "Welcome to our store",
+            "text": "Welcome to our store test text overflow test text overflow",
             "link": ""
           }
         }
@@ -34,7 +34,7 @@
         "announcement-bar-0"
       ],
       "settings": {
-        "auto_rotate": true,
+        "auto_rotate": false,
         "change_slides_speed": 3,
         "color_scheme": "scheme-1",
         "show_line_separator": true,
