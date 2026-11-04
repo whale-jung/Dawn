@@ -1,0 +1,53 @@
+{% style %}
+    .section-{{ section.id }}-notification {
+        text-align: center;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        background: {{ section.settings.notification-background-color }};
+        color: {{ section.settings.notification-text-color }};
+    }
+{% endstyle %}
+
+{% if section.settings.notification-text and section.settings.notification-close-button-switch %}
+    <div class="section-{{ section.id }}-notification">
+        {{ section.settings.notification-text }}
+    </div>
+{% endif %}
+
+{% schema %}
+{
+    "name": "Notification",
+    "tag": "section",
+    "class": "notification",
+    "settings": [
+        {
+            "type": "text",
+            "id": "notification-text",
+            "label": "Notification",
+            "default": "This is a notification!"
+        },
+        {
+            "type": "color",
+            "id": "notification-background-color",
+            "label": "background color"
+        },
+        {
+            "type": "color",
+            "id": "notification-text-color",
+            "label": "text color"
+        },
+        {
+            "type": "checkbox",
+            "id": "notification-close-button-switch",
+            "label": "show close button",
+            "default": false
+        }
+    ],
+    "presets": [
+        {
+            "name": "Notification"
+        }
+    ]
+}
+{% endschema %}
