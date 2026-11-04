@@ -43,6 +43,16 @@
         "enable_language_selector": false
       }
     },
+    "test_notification_k6gqBr": {
+      "type": "test-notification",
+      "name": "Notification",
+      "settings": {
+        "notification-text": "This is a notification!",
+        "notification-background-color": "#FFCE63",
+        "notification-text-color": "#F21F1F",
+        "notification-close-button-switch": true
+      }
+    },
     "header": {
       "type": "header",
       "settings": {
@@ -64,6 +74,7 @@
   },
   "order": [
     "announcement-bar",
+    "test_notification_k6gqBr",
     "header"
   ]
 }
