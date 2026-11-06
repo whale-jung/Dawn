@@ -1,0 +1,144 @@
+{% style %}
+  .section-{{ section.id }}-card-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding-block: 1rem;
+  }
+
+  .section-{{ section.id }}-card-container-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+
+  .section-{{ section.id }}-card {
+      flex: 1 1 calc((100% / {{ section.settings.section-line-count }}) - 1rem);
+      border: 1px solid #ccc;
+      border-radius: {{ section.settings.section-card-border-radius }}px;
+      padding: 1rem;
+      box-sizing: border-box;
+  }
+{% endstyle %}
+
+<div class="section-{{ section.id }}-card-container">
+  {% if section.settings['section-title'] %}
+    <h2 class="section-{{ section.id }}-card-container-title">{{ section.settings['section-title'] }}</h2>
+  {% endif %}
+  {% if section.blocks != empty %}
+    {% for block in section.blocks %}
+      {% case block.type %}
+        {% when 'image_card' %}
+          <div class="section-{{ section.id }}-card">
+            <img
+              src="{{ block.settings.card-image }}"
+              alt="{{ block.settings.card-title }}"
+              height="{{ block.settings.card-image-height }}"
+              width="{{ block.settings.card-image-width }}"
+            >
+            <h3>{{ block.settings['card-title'] }}</h3>
+            <p>{{ block.settings['card-content'] }}</p>
+          </div>
+        {% when 'text_card' %}
+          <div class="section-{{ section.id }}-card">
+            <h3>{{ block.settings['card-title'] }}</h3>
+            <p>{{ block.settings['card-content'] }}</p>
+          </div>
+      {% endcase %}
+    {% endfor %}
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "test settings",
+  "tag": "section",
+  "class": "test-settings",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section-title",
+      "label": "Section title",
+      "default": "Test settings"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "section-line-count",
+      "label": "Number of lines",
+      "default": 3,
+      "min": 1,
+      "max": 10,
+      "step": 1
+    },
+    {
+      "type": "range",
+      "id": "section-card-border-radius",
+      "label": "Card border radius",
+      "default": 0,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image_card",
+      "name": "Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "card-image",
+          "label": "Card image"
+        },
+        {
+          "type": "range",
+          "id": "card-image-width",
+          "label": "Card image width",
+          "default": 100,
+          "min": 50,
+          "max": 100,
+          "step": 1
+        },
+        {
+          "type": "range",
+          "id": "card-image-height",
+          "label": "Card image height",
+          "default": 100,
+          "min": 50,
+          "max": 100,
+          "step": 1
+        },
+        {
+          "type": "textarea",
+          "id": "card-content",
+          "label": "Card content",
+          "default": "Card content"
+        }
+      ]
+    },
+    {
+      "type": "text_card",
+      "name": "Text Card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "card-title",
+          "label": "Card title",
+          "default": "Card title"
+        },
+        {
+          "type": "textarea",
+          "id": "card-content",
+          "label": "Card content",
+          "default": "Card content"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
