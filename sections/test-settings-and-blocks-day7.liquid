@@ -1,8 +1,5 @@
 {% style %}
   .section-{{ section.id }}-card-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
       padding-block: 1rem;
   }
 
@@ -10,6 +7,12 @@
     font-size: 1.5rem;
     font-weight: bold;
     margin-bottom: 1rem;
+  }
+
+  .section-{{ section.id }}-card-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
   }
 
   .section-{{ section.id }}-card {
@@ -26,16 +29,19 @@
     <h2 class="section-{{ section.id }}-card-container-title">{{ section.settings['section-title'] }}</h2>
   {% endif %}
   {% if section.blocks != empty %}
+    <div class="section-{{ section.id }}-card-list">
     {% for block in section.blocks %}
       {% case block.type %}
         {% when 'image_card' %}
           <div class="section-{{ section.id }}-card">
-            <img
-              src="{{ block.settings.card-image }}"
-              alt="{{ block.settings.card-title }}"
-              height="{{ block.settings.card-image-height }}"
-              width="{{ block.settings.card-image-width }}"
-            >
+            {% if block.settings.card-image %}
+              <img
+                src="{{ block.settings.card-image }}"
+                alt="{{ block.settings.card-title }}"
+                height="{{ block.settings.card-image-height }}"
+                width="{{ block.settings.card-image-width }}"
+              >
+            {% endif %}
             <h3>{{ block.settings['card-title'] }}</h3>
             <p>{{ block.settings['card-content'] }}</p>
           </div>
@@ -46,6 +52,7 @@
           </div>
       {% endcase %}
     {% endfor %}
+  </div>
   {% endif %}
 </div>
 
