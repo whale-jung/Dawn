@@ -76,10 +76,58 @@
         "padding_top": 44,
         "padding_bottom": 36
       }
+    },
+    "test_settings_and_blocks_day7_W8KxJq": {
+      "type": "test-settings-and-blocks-day7",
+      "blocks": {
+        "text_card_VpTh6Q": {
+          "type": "text_card",
+          "settings": {
+            "card-title": "Card title",
+            "card-content": "Card content"
+          }
+        },
+        "image_card_VA79rU": {
+          "type": "image_card",
+          "settings": {
+            "card-image-width": 100,
+            "card-image-height": 100,
+            "card-content": "Card content"
+          }
+        },
+        "image_card_aBWanY": {
+          "type": "image_card",
+          "settings": {
+            "card-image-width": 100,
+            "card-image-height": 100,
+            "card-content": "Card content"
+          }
+        },
+        "text_card_jXjfNL": {
+          "type": "text_card",
+          "settings": {
+            "card-title": "Card title",
+            "card-content": "Card content"
+          }
+        }
+      },
+      "block_order": [
+        "text_card_VpTh6Q",
+        "image_card_VA79rU",
+        "image_card_aBWanY",
+        "text_card_jXjfNL"
+      ],
+      "name": "Test settings",
+      "settings": {
+        "section-title": "Test settings",
+        "section-line-count": 3,
+        "section-card-border-radius": 20
+      }
     }
   },
   "order": [
     "image_banner",
-    "featured_collection"
+    "featured_collection",
+    "test_settings_and_blocks_day7_W8KxJq"
   ]
 }
