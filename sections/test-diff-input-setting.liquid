@@ -14,7 +14,7 @@
   {% comment %} input-settings {% endcomment %}
   <h3>collection</h3>
   <div style="display: flex; flex-wrap: wrap; gap: 8px; padding-block: 4px;">
-    {% for product in section.settings.test-collection.products %}
+    {% for product in section.settings['test-collection'].products %}
       <div style="display: inline-block;border: 1px solid #ccc; padding: 2px 6px; margin: 4px;border-radius: 8px;">
         {{ product.title }}
       </div>
@@ -28,8 +28,9 @@
   <div class="font-demo">test font_picker</div>
 
   {% comment %} html {% endcomment %}
-   
-   
+  <div class="custom-html">
+    {{ section.settings.test-html }}
+  </div>
 </div>
 {% schema %}
 {
