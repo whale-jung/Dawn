@@ -29,11 +29,14 @@
 
   {% comment %} html {% endcomment %}
   <div class="custom-html">
-    {{ section.settings.test-html }}
+    {{ section.settings['test-html'] }}
   </div>
 
   {% comment %} inline_richtext {% endcomment %}
-   {{ section.settings.test-inline-richtext }}
+  {{ section.settings['test-inline-richtext'] }}
+
+  {% comment %} link_list {% endcomment %}
+  {{ section.settings['test-link-list'] | json }}
 </div>
 {% schema %}
 {
@@ -72,7 +75,7 @@
     {
       "type": "link_list",
       "id": "test-link-list",
-      "label": "Test Link List",
+      "label": "Test Link List"
     }
   ],
   "presets": [
