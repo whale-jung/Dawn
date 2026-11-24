@@ -44,7 +44,7 @@
   {% endfor %}
 </div>
 <script>
-  console.log('test', {{ section.settings.test-text }})
+  console.log('test', "{{ section.settings.test-text | escape }}")
 </script>
 {% schema %}
 {
