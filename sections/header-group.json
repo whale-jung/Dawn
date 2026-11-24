@@ -81,7 +81,9 @@
       "type": "test-diff-input-setting",
       "name": "DiffInputSetting",
       "settings": {
-        "test-collection": "bath"
+        "test-collection": "bath",
+        "test-color-scheme": "",
+        "test_font_picker": "andada_pro_i4"
       }
     }
   },
