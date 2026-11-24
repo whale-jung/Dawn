@@ -1,7 +1,12 @@
 <div>
-  {% for product in section.settings['test-collection'].products %}
-    {{ product.title }}
-  {% endfor %}
+  <h3>collection</h3>
+  <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+    {% for block in section.blocks %}
+      <div style="display: inline-block;border: 1px solid #ccc; padding: 4px; margin: 4px;">
+        {{ block.settings['test-input'] }}
+      </div>
+    {% endfor %}
+  </div>
 </div>
 {% schema %}
 {
