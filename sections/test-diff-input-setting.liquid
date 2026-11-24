@@ -63,7 +63,9 @@
   {% endif %}
 
   {% comment %} metaobject {% endcomment %}
-   {{ section.settings.test_metaobject }}
+  {% assign mo_handle = section.settings.test_metaobject %}
+  {% assign mo = metaobjects.DEMO[mo_handle] %}
+  {{ mo }}
 </div>
 
 {% schema %}
