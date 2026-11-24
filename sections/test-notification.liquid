@@ -11,8 +11,6 @@
 
 {% if section.settings.notification-text and section.settings.notification-close-button-switch %}
     <div class="section-{{ section.id }}-notification">
-        {{ section.settings.test-article | json }}
-        {{ section.settings.test-article-list | json }}
         {{ section.settings.notification-text }}
     </div>
 {% endif %}
