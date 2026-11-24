@@ -66,6 +66,9 @@
   {% assign mo_handle = section.settings.test_metaobject %}
   {% assign mo = metaobjects.DEMO[mo_handle] %}
   {{ mo | json }}
+
+  {% comment %} page {% endcomment %}
+   {{ section.settings.test-page | json }}
 </div>
 
 {% schema %}
