@@ -8,7 +8,10 @@
     {% endfor %}
   </div>
 
-  {% comment %} settings_schema.json {% endcomment %}
+  {% comment %} settings_schema.json中的color_palette应用 {% endcomment %}
+  <div
+    style="width: 300px;height: 300px;background: {{ settings.test-color-palette }}"
+  ></div>
 </div>
 {% schema %}
 {
