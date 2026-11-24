@@ -12,7 +12,7 @@
 
 <div>
   {% comment %} input-settings {% endcomment %}
-  <h3>collection??</h3>
+  <h3>collection</h3>
   <div style="display: flex; flex-wrap: wrap; gap: 8px; padding-block: 4px;">
     {% for product in section.settings['test-collection'].products %}
       <div style="display: inline-block;border: 1px solid #ccc; padding: 2px 6px; margin: 4px;border-radius: 8px;">
@@ -46,7 +46,6 @@
   {% assign menu_handle = 'main-menu' %}
   {% assign menu = linklists[menu_handle] %}
 
-  www
   {% if menu != blank %}
     <nav>
       <h2>{{ menu.title | escape }}</h2>
