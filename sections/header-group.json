@@ -83,7 +83,8 @@
       "settings": {
         "test-collection": "bath",
         "test-color-scheme": "",
-        "test_font_picker": "andada_pro_i4"
+        "test_font_picker": "bagel_fat_one_n4",
+        "test-html": "<div style=\"color: #ccc;font-weight: 500;font-size: 24px;\">2343142test</div>"
       }
     }
   },
