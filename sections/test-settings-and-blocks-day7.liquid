@@ -16,7 +16,7 @@
   }
 
   .section-{{ section.id }}-card {
-      flex: 1 1 calc((100% / {{ section.settings.section-line-count }}) - 1rem);
+      width: calc((100% / {{ section.settings.section-line-count }}) - 1rem);
       border: 1px solid #ccc;
       border-radius: {{ section.settings.section-card-border-radius }}px;
       padding: 1rem;

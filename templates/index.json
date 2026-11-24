@@ -9,44 +9,60 @@
  */
 {
   "sections": {
-    "image_banner": {
-      "type": "image-banner",
+    "test_slideshow_UT9TgM": {
+      "type": "test-slideshow",
       "blocks": {
-        "heading_fhi44K": {
-          "type": "heading",
+        "image_3mVBnp": {
+          "type": "image",
           "settings": {
-            "heading": "CUP'S FAMILY",
-            "heading_size": "h1"
+            "image-or-video": "image",
+            "banner-image": "shopify://shop_images/sm-crescent-TY_waves.png",
+            "banner-title": "product01",
+            "banner-title-color": "#131111",
+            "banner-title-font-size": 24,
+            "banner-description": "ceshishidfheiotheptehqwpi",
+            "banner-description-color": "",
+            "banner-description-font-size": 24
           }
         },
-        "button": {
-          "type": "buttons",
+        "image_GHkecx": {
+          "type": "image",
           "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify://collections/all",
-            "button_style_secondary_1": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
+            "image-or-video": "image",
+            "banner-image": "shopify://shop_images/sm-crescent-TY_sea_2_2x_1997a244-3eff-413a-959c-520ce97a98ab.png",
+            "banner-title": "title",
+            "banner-title-color": "#ffffff",
+            "banner-title-font-size": 24,
+            "banner-description": "this is a test product",
+            "banner-description-color": "#d50c0c",
+            "banner-description-font-size": 24
+          }
+        },
+        "image_hCmwgG": {
+          "type": "image",
+          "settings": {
+            "image-or-video": "video",
+            "banner-image": "shopify://shop_images/CAFECUP_LisaCongdon_01.jpg",
+            "banner-video": "shopify://files/videos/C0020.MP4",
+            "banner-title": "2222",
+            "banner-title-color": "",
+            "banner-title-font-size": 24,
+            "banner-description": "33333333333",
+            "banner-description-color": "",
+            "banner-description-font-size": 24
           }
         }
       },
       "block_order": [
-        "heading_fhi44K",
-        "button"
+        "image_3mVBnp",
+        "image_GHkecx",
+        "image_hCmwgG"
       ],
+      "name": "Test Slideshow",
       "settings": {
-        "image": "shopify://shop_images/CAFECUP_LisaCongdon_01.jpg",
-        "image_overlay_opacity": 40,
-        "image_height": "large",
-        "image_behavior": "none",
-        "desktop_content_position": "bottom-center",
-        "desktop_content_alignment": "center",
-        "show_text_box": false,
-        "color_scheme": "scheme-3",
-        "stack_images_on_mobile": false,
-        "mobile_content_alignment": "center",
-        "show_text_below": false
+        "swiper-id": "home-banner",
+        "swiper-auto-play": false,
+        "banner-mask-opacity": 0.3
       }
     },
     "featured_collection": {
@@ -76,10 +92,58 @@
         "padding_top": 44,
         "padding_bottom": 36
       }
+    },
+    "test_settings_and_blocks_day7_W8KxJq": {
+      "type": "test-settings-and-blocks-day7",
+      "blocks": {
+        "text_card_VpTh6Q": {
+          "type": "text_card",
+          "settings": {
+            "card-title": "Card title",
+            "card-content": "Card content"
+          }
+        },
+        "image_card_VA79rU": {
+          "type": "image_card",
+          "settings": {
+            "card-image-width": 100,
+            "card-image-height": 100,
+            "card-content": "Card content"
+          }
+        },
+        "image_card_aBWanY": {
+          "type": "image_card",
+          "settings": {
+            "card-image-width": 100,
+            "card-image-height": 100,
+            "card-content": "Card content"
+          }
+        },
+        "text_card_jXjfNL": {
+          "type": "text_card",
+          "settings": {
+            "card-title": "Card title",
+            "card-content": "Card content"
+          }
+        }
+      },
+      "block_order": [
+        "text_card_VpTh6Q",
+        "image_card_VA79rU",
+        "image_card_aBWanY",
+        "text_card_jXjfNL"
+      ],
+      "name": "Test settings",
+      "settings": {
+        "section-title": "Test settings",
+        "section-line-count": 3,
+        "section-card-border-radius": 20
+      }
     }
   },
   "order": [
-    "image_banner",
-    "featured_collection"
+    "test_slideshow_UT9TgM",
+    "featured_collection",
+    "test_settings_and_blocks_day7_W8KxJq"
   ]
 }

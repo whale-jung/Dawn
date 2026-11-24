@@ -1,0 +1,292 @@
+<!-- 1. 引入 Swiper 样式 -->
+<link rel="stylesheet" href="{{ 'swiper-bundle.min.css' | asset_url }}">
+
+<style>
+  .banner-swiper {
+    width: 100%;
+    height: clamp(240px, 40vw, 560px);
+    --swiper-theme-color: #fff;
+  }
+
+  .banner-swiper .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .swiper-button-prev,
+  .swiper-button-next {
+    color: red;
+  }
+
+  {% comment %} 轮播item {% endcomment %}
+  .swiper-banner-item {
+    position: relative;
+    widht: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  {% comment %} item图片 {% endcomment %}
+  .swiper-banner-item-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain!important;
+  }
+
+   {% comment %} item视频 {% endcomment %}
+  .swiper-banner-item-video {
+    width: 100%;
+    height: 100%;
+  }
+
+  .swiper-banner-content-mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, var(--mask-opacity));
+  }
+
+  {% comment %} item内容 {% endcomment %}
+  .swiper-banner-content {
+    margin-top: 24%;
+    margin-left: 100px;
+  }
+
+  {% comment %} item标题 {% endcomment %}
+  .swiper-banner-title {
+    {% comment %} color: var(--item-title-color); {% endcomment %}
+    {% comment %} font-size: var(--item-title-font-size); {% endcomment %}
+    color: green;
+    font-size: 30px;
+  }
+
+  {% comment %} item描述 {% endcomment %}
+  .swiper-banner-description {
+    color: var(--item-description-color);
+    font-size: var(--item-description-font-size);
+  }
+</style>
+
+<!-- 2. 编写轮播结构 -->
+<div class="swiper banner-swiper" id="{{ section.settings.swiper-id }}">
+  <div class="swiper-wrapper">
+    {% if section.blocks.size > 0 %}
+      {% for block in section.blocks %}
+        <div
+          class="swiper-slide"
+          style="
+            --mask-opacity: {{ section.settings.banner-mask-opacity }};
+            --item-title-color: {{ block.settings.banner-title-color }};
+            --item-title-font-size: {{ block.settings.banner-title-font-size }}px;
+            --item-description-color: {{ block.settings.banner-description-color }};
+            --item-description-font-size: {{ block.settings.banner-description-font-size }}px;
+          "
+        >
+          <div class="swiper-banner-item">
+            {% if block.settings['image-or-video'] == 'image' %}
+              <img
+                class="swiper-banner-item-img"
+                src="{{ block.settings.banner-image | image_url }}"
+                width="100%"
+                height="100%"
+              >
+            {% else %}
+              <video
+                class="swiper-banner-item-video"
+                preload="none"
+              >
+                {% comment %} poster="{{ block.setting.banner-video | asset_url }}" {% endcomment %}
+                {% comment %} <!-- 封面图 --> {% endcomment %}
+                muted
+                {% comment %} <!-- 静音，自动播放必备 --> {% endcomment %}
+                playsinline
+                {% comment %} <!-- 手机内联播放，不弹出全屏播放器 --> {% endcomment %}
+                loop
+                {% comment %} <!-- 循环 --> {% endcomment %}
+                controls
+                {% comment %} <!-- 是否显示播放控件，背景视频可以删掉 --> {% endcomment %}
+                >
+                <source src="{{ block.setting.banner-video | asset_url }}" type="video/mp4">
+                你的浏览器不支持视频
+              </video>
+            {% endif %}
+
+            <div class="swiper-banner-content-mask">
+              <div class="swiper-banner-content">
+                <div class="swiper-banner-title">
+                  {{ block.settings['banner-title'] }}
+                </div>
+
+                <div class="swiper-banner-description">
+                  {{ block.settings['banner-description'] }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <div style="font-size: 20px;color:red;">请通过block配置轮播图</div>
+    {% endif %}
+  </div>
+
+  <div class="swiper-pagination"></div>
+  <div class="swiper-button-prev"></div>
+  <div class="swiper-button-next"></div>
+</div>
+
+<!-- 3. 引入脚本并初始化 -->
+<script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const banner = document.querySelector('#{{ section.settings.swiper-id }}');
+
+    const swiper = new Swiper(banner, {
+      slidesPerView: 1,
+      loop: true,
+
+      pagination: {
+        el: banner.querySelector('.swiper-pagination'),
+        clickable: true,
+      },
+
+      autoplay: {{ section.settings.swiper-auto-play | json }}
+        ? { delay: section.settings.banner-delay-time * 1000, disableOnInteraction: false }
+        : false,
+
+      navigation: {
+        prevEl: banner.querySelector('.swiper-button-prev'),
+        nextEl: banner.querySelector('.swiper-button-next'),
+      },
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Test Slideshow",
+  "settings": [
+    {
+      "type": "text",
+      "id": "swiper-id",
+      "label": "Swiper Id",
+      "default": "home-banner"
+    },
+    {
+      "type": "checkbox",
+      "id": "swiper-auto-play",
+      "label": "Auto Play",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "banner-delay-time",
+      "label": "Delay Time",
+      "default": 1,
+      "min": 1,
+      "max": 10,
+      "step": 1
+    },
+    {
+      "type": "range",
+      "id": "banner-mask-opacity",
+      "label": "Mask Opacity",
+      "default": 0.2,
+      "min": 0,
+      "max": 1,
+      "step": 0.1
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Banner",
+      "settings": [
+        {
+          "type": "select",
+          "id": "image-or-video",
+          "label": "Image Or Video",
+          "default": "image",
+          "options": [
+            {
+              "label": "Image",
+              "value": "image"
+            },
+            {
+              "label": "Video",
+              "value": "video"
+            }
+          ]
+        },
+        {
+          "type": "image_picker",
+          "id": "banner-image",
+          "label": "Banner Image"
+        },
+        {
+          "type": "video",
+          "id": "banner-video",
+          "label": "Banner Video"
+        },
+        {
+          "type": "text",
+          "id": "banner-title",
+          "label": "Banner Title",
+          "default": "title"
+        },
+        {
+          "type": "color",
+          "id": "banner-title-color",
+          "label": "Banner Title Color"
+        },
+        {
+          "type": "range",
+          "id": "banner-title-font-size",
+          "label": "Banner Title Font Size",
+          "default": 24,
+          "min": 16,
+          "max": 40,
+          "unit": "px",
+          "step": 0.5
+        },
+        {
+          "type": "textarea",
+          "id": "banner-description",
+          "label": "Banner Description",
+          "default": "this is a test product"
+        },
+        {
+          "type": "color",
+          "id": "banner-description-color",
+          "label": "Banner Description Color"
+        },
+        {
+          "type": "range",
+          "id": "banner-description-font-size",
+          "label": "Banner Description Font Size",
+          "default": 24,
+          "min": 16,
+          "max": 40,
+          "unit": "px",
+          "step": 0.5
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Test Slideshow",
+      "blocks": [
+        {
+          "type": "image"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

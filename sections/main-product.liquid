@@ -99,12 +99,20 @@
                   </p>
                 {%- when 'title' -%}
                   <div class="product__title" {{ block.shopify_attributes }}>
-                    <h1>{{ product.title | escape }}</h1>
+                    {% if product.metafields.custom.product_subtitle %}
+                      <h1 class="product_subtitle">{{ product.metafields.custom.product_subtitle }}</h1>
+                    {% else %}
+                      <h1>{{ product.title | escape }}</h1>
+                    {% endif %}
                     <a href="{{ product.url }}" class="product__title">
                       <h2 class="h1">
                         {{ product.title | escape }}
                       </h2>
                     </a>
+                  </div>
+                {% when 'flip_title' %}
+                  <div class="product_flip_title">
+                    <h1>{{ block.settings.flip_title }}</h1>
                   </div>
                 {%- when 'price' -%}
                   <div id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
@@ -141,6 +149,42 @@
                       {{ form | payment_terms }}
                     {%- endform -%}
                   </div>
+                {% when 'gift-card' %}
+                  <div
+                    class="section-{{ section.id }}-gift-card"
+                    style="
+                      --card-bg-color: {{ block.settings.card-bg-color }};
+                      --card-border: {{ block.settings.card-border-width }}px solid {{ block.settings.card-border-color }};
+                      --card-border-radius: {{ block.settings.card-border-radius }}px;
+                      --gift-img-box-width: {{ block.settings.gift-img-width | plus: 4}}px;
+                      --gift-img-box-height: {{ block.settings.gift-img-height | plus: 4}}px;
+                      --gift-img-box-border-radius: {{ block.settings.gift-img-box-border-radius }}px;
+                      --gift-card-title-color: {{ block.settings.card-title-color }};
+                      --gift-card-title-font-size: {{ block.settings.card-title-font-size }}px;
+                      --gift-card-desc-color: {{ block.settings.card-desc-color }};
+                      --gift-card-desc-font-size: {{ block.settings.card-desc-font-size }}px;
+                    "
+                  >
+                    <div class="section-{{ section.id }}-gift-img-box">
+                      <img
+                        src="{{ block.settings.gift-img | image_url }}"
+                        width="{{ block.settings.gift-img-width }}"
+                        height="{{ block.settings.gift-img-height }}"
+                        loading="lazy"
+                      >
+                    </div>
+                    <div class="section-{{ section.id }}-gift-card-msg">
+                      <div class="section-{{ section.id }}-gift-card-title">
+                        {{ block.settings['card-title'] | upcase | escape }}
+                      </div>
+
+                      <div class="section-{{ section.id }}-gift-card-desc">
+                        {{ block.settings['card-desc'] | escape }}
+                      </div>
+                    </div>
+                  </div>
+                {% when 'black-friday-count-down' %}
+                  {% render 'test-black-friday-activity-countdown', block: block %}
                 {%- when 'inventory' -%}
                   <p
                     class="product__inventory{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}{% if product.selected_or_first_available_variant.inventory_management != 'shopify' %} visibility-hidden{% endif %}"
@@ -686,6 +730,21 @@
                 {%- when 'icon-with-text' -%}
                   {% render 'icon-with-text', block: block %}
               {%- endcase -%}
+
+              {% if block.type == 'buy_buttons' %}
+                <div>
+                  {% assign description = product.metafields.custom.description %}
+                  {% if description %}
+                    <div style="color: red;">
+                      {{ product.metafields.custom.description }}
+                    </div>
+                  {% elsif request.design_mode %}
+                    <div style="color: #eec8b4">
+                      请在后台通过元字段description为该产品配置产品描述
+                    </div>
+                  {% endif %}
+                </div>
+              {% endif %}
             {%- endfor -%}
             <a href="{{ product.url }}" class="link product__view-details animate-arrow">
               {{ 'products.product.view_full_details' | t }}
@@ -750,6 +809,59 @@
   </product-component>
 </product-info>
 
+{% style %}
+  .section-{{ section.id }}-gift-card {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    width: 100%;
+    padding: 7px;
+    border: var(--card-border);
+    border-radius: var(--card-border-radius);
+    background: var(--card-bg-color);
+  }
+
+  .section-{{ section.id }}-gift-img-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2px;
+    width: var(--gift-img-box-width);
+    height: var(--gift-img-box-height);
+    overflow: hidden;
+    background: #ffffff;
+    border-radius: var(--gift-img-box-border-radius);
+  }
+
+  .section-{{ section.id }}-gift-img-box img {
+    width: 100%;
+    height: 100%;
+    /* object-fit: cover; */
+    /* object-position: center; */
+  }
+
+  /* 标题+gift描述 */
+  .section-{{ section.id }}-gift-card-msg {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2px;
+  }
+
+  .section-{{ section.id }}-gift-card-title {
+    font-size: var(--gift-card-title-font-size);
+    letter-spacing: 1.4px;
+    color: var(--gift-card-title-color);
+  }
+
+  .section-{{ section.id }}-gift-card-desc {
+    font-size: var(--gift-card-desc-font-size);
+    font-weight: 500;
+    letter-spacing: normal;
+    color: var(--gift-card-desc-color);
+  }
+{% endstyle %}
+
 {% schema %}
 {
   "name": "t:sections.main-product.name",
@@ -797,9 +909,142 @@
       "limit": 1
     },
     {
+      "type": "flip_title",
+      "name": "Flip title",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "flip_title",
+          "label": "Flip Title",
+          "default": "product custom title"
+        }
+      ]
+    },
+    {
       "type": "price",
       "name": "t:sections.main-product.blocks.price.name",
       "limit": 1
+    },
+    {
+      "type": "gift-card",
+      "name": "gift-card",
+      "settings": [
+        {
+          "type": "header",
+          "content": "card style config"
+        },
+        {
+          "type": "range",
+          "id": "card-border-radius",
+          "label": "card border radius",
+          "default": 12,
+          "min": 0,
+          "max": 20,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "id": "card-border-width",
+          "label": "card border width",
+          "default": 1,
+          "min": 0,
+          "max": 4,
+          "unit": "px"
+        },
+        {
+          "type": "color",
+          "id": "card-bg-color",
+          "label": "card background color",
+          "default": "#f2ebde"
+        },
+        {
+          "type": "color",
+          "id": "card-border-color",
+          "label": "card border color",
+          "default": "#d8c39f"
+        },
+        {
+          "type": "header",
+          "content": "content style config"
+        },
+        {
+          "type": "image_picker",
+          "id": "gift-img",
+          "label": "gift image"
+        },
+        {
+          "type": "range",
+          "id": "gift-img-box-border-radius",
+          "label": "gift image box-border-radius",
+          "default": 8,
+          "min": 0,
+          "max": 20,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "id": "gift-img-width",
+          "label": "gift image width",
+          "default": 42,
+          "min": 32,
+          "max": 60,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "id": "gift-img-height",
+          "label": "gift image height",
+          "default": 42,
+          "min": 32,
+          "max": 60,
+          "unit": "px"
+        },
+        {
+          "type": "text",
+          "id": "card-title",
+          "label": "card title",
+          "default": "free gift · orders $180"
+        },
+        {
+          "type": "text",
+          "id": "card-desc",
+          "label": "card description",
+          "default": "Spend $180+ to get a free tote bag"
+        },
+        {
+          "type": "color",
+          "id": "card-title-color",
+          "label": "title color",
+          "default": "#694c1e"
+        },
+        {
+          "type": "range",
+          "id": "card-title-font-size",
+          "label": "title font size",
+          "default": 10,
+          "min": 6,
+          "max": 16,
+          "unit": "px",
+          "step": 0.5
+        },
+        {
+          "type": "color",
+          "id": "card-desc-color",
+          "label": "description color",
+          "default": "#1f1f21"
+        },
+        {
+          "type": "range",
+          "id": "card-desc-font-size",
+          "label": "description font size",
+          "default": 13,
+          "min": 6,
+          "max": 18,
+          "unit": "px",
+          "step": 0.5
+        }
+      ]
     },
     {
       "type": "sku",
@@ -2139,6 +2384,93 @@
           "default": "t:sections.main-product.blocks.icon_with_text.settings.heading_3.default",
           "label": "t:sections.main-product.blocks.icon_with_text.settings.heading_3.label",
           "info": "t:sections.main-product.blocks.icon_with_text.settings.heading.info"
+        }
+      ]
+    },
+    {
+      "type": "black-friday-count-down",
+      "name": "Black Friday Count Down",
+      "settings": [
+        {
+          "type": "header",
+          "content": "activity card style"
+        },
+        {
+          "type": "range",
+          "id": "activity-card-border-radius",
+          "label": "activity card border radius",
+          "default": 12,
+          "min": 0,
+          "max": 30,
+          "unit": "px"
+        },
+        {
+          "type": "color_background",
+          "id": "activity-card-background-color",
+          "label": "activity card background color"
+        },
+        {
+          "type": "header",
+          "content": "activity introduction"
+        },
+        {
+          "type": "text",
+          "id": "activity-title",
+          "label": "activity title",
+          "default": "BLACK FRIDAY SALE"
+        },
+        {
+          "type": "color",
+          "id": "activity-title-color",
+          "label": "activity title color",
+          "default": "#e5d09f"
+        },
+        {
+          "type": "range",
+          "id": "activity-title-font-size",
+          "label": "activity title font size",
+          "default": 12,
+          "min": 8,
+          "max": 16
+        },
+        {
+          "type": "text",
+          "id": "activity-discount-message",
+          "label": "activity discount message",
+          "default": "20% off sitewide. Get it now."
+        },
+        {
+          "type": "range",
+          "id": "activity-discount-message-font-size",
+          "label": "activity discount message font size",
+          "default": 12,
+          "min": 8,
+          "max": 30
+        },
+        {
+          "type": "color_background",
+          "id": "activity-discount-message-color",
+          "label": "activity discount message color"
+        },
+        {
+          "type": "text",
+          "id": "activity-prompt",
+          "label": "activity prompt",
+          "default": "Price applied automatically at checkout"
+        },
+        {
+          "type": "range",
+          "id": "activity-prompt-font-size",
+          "label": "activity prompt font size",
+          "default": 12,
+          "min": 8,
+          "max": 16
+        },
+        {
+          "type": "color",
+          "id": "activity-prompt-color",
+          "label": "activity prompt color",
+          "default": "#e5d09f"
         }
       ]
     }

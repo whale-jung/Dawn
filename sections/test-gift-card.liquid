@@ -1,0 +1,143 @@
+<div class="section-{{ section.id }}-gift-card">
+  <div class="section-{{ section.id }}-gift-box">
+    <img
+      src="{{ section.settings.gift-img }}"
+      alt=""
+      width="{{ section.settings.gift-img-width }}"
+      height="{{ section.settings.gift-img-height }}"
+      loading="lazy"
+    >
+  </div>
+</div>
+
+{% style %}
+  .section-{{ section.id }}-gift-card {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    width: 100%;
+    padding: 8px;
+    border: {{ section.settings.card-border-width }}px solid {{ section.settings.card-border-color }};
+    border-radius: {{ section.settings.card-border-radius }}px;
+  }
+
+  /* 图片 */
+  .section-{{ section.id }}-gift-img-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2px;
+    width: {{ section.settings.gift-img-widht }}px;
+    height: {{ section.settings.gift-img-height }}px;
+    overflow: hidden;
+    border-radius: {{ section.settings.card-border-radius }}px;
+  }
+
+  .section-{{ section.id }}-gift-img-box img {
+    width: 100%;
+    height: 100%;
+    /* object-fit: cover; */
+    /* object-position: center; */
+  }
+
+  /* 标题+gift描述 */
+  .section-{{ section.id }}-gift-card-msg {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 4px;
+  }
+
+  .section-{{ section.id }}-gift-card-title {
+    font-size: 0.6rem;
+  }
+
+  .section-{{ section.id }}-gift-card-desc {
+    font-size: 0.8rem;
+  }
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "GiftCard",
+  "tag": "section",
+  "class": "giftCard",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "gift-img",
+      "label": "gift image"
+    },
+    {
+      "type": "range",
+      "id": "gift-img-width",
+      "label": "gift image width",
+      "default": 44,
+      "min": 32,
+      "max": 60,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "gift-img-height",
+      "label": "gift image height",
+      "default": 44,
+      "min": 32,
+      "max": 60,
+      "unit": "px"
+    },
+    {
+      "type": "text",
+      "id": "card-title",
+      "label": "card title",
+      "default": "free gift · orders $180"
+    },
+    {
+      "type": "text",
+      "id": "card-desc",
+      "label": "card description",
+      "default": "Spend $180+ to get a free tote bag"
+    },
+    {
+      "type": "header",
+      "content": "card style config"
+    },
+    {
+      "type": "color",
+      "id": "card-title-color",
+      "label": "title color",
+      "default": "#694c1e"
+    },
+    {
+      "type": "color",
+      "id": "card-border-color",
+      "label": "card border color",
+      "default": "#d8c39f"
+    },
+    {
+      "type": "range",
+      "id": "card-border-width",
+      "label": "card border width",
+      "default": 1,
+      "min": 0,
+      "max": 4,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "card-border-radius",
+      "label": "card border radius",
+      "default": 3,
+      "min": 0,
+      "max": 5,
+      "unit": "px"
+    },
+    {
+      "type": "color",
+      "id": "card-bg-color",
+      "label": "card background color",
+      "default": "#f2ebde"
+    }
+  ]
+}
+{% endschema %}
