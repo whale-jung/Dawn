@@ -31,6 +31,9 @@
   <div class="custom-html">
     {{ section.settings.test-html }}
   </div>
+
+  {% comment %} inline_richtext {% endcomment %}
+   {{ section.settings.test-inline-richtext }}
 </div>
 {% schema %}
 {
@@ -59,6 +62,12 @@
       "id": "test-html",
       "label": "Test Html",
       "default": "<div style='color: #ccc;font-weight: 500;font-size: 24px;'>2343142test</div>"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "test-inline-richtext",
+      "label": "Test Inline Richtext",
+      "default": "<em>italic</em>teerte<b>bold</b>"
     }
   ],
   "presets": [
