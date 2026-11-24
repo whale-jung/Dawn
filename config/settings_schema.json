@@ -1474,8 +1474,8 @@
         "type": "color_palette",
         "id": "test-color-palette",
         "default": {
-          "primary": "#121212",
-          "secondary": "#FFFFFF",
+          "primary": "#eb5d5c",
+          "secondary": "#8cc5ca",
           "accent": "#FF4416"
         }
       }
