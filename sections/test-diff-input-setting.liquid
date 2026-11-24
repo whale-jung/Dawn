@@ -1,9 +1,9 @@
 <div>
   <h3>collection</h3>
   <div style="display: flex; flex-wrap: wrap; gap: 8px; padding-block: 4px;">
-    {% for collection in section.settings.test-collection %}
-      <div style="display: inline-block;border: 1px solid #ccc; padding: 4px; margin: 4px;">
-        {{ collection.title }}
+    {% for product in section.settings.test-collection.products %}
+      <div style="display: inline-block;border: 1px solid #ccc; padding: 2px 6px; margin: 4px;border-radius: 8px;">
+        {{ product.title }}
       </div>
     {% endfor %}
   </div>
