@@ -36,17 +36,31 @@
   {{ section.settings['test-inline-richtext'] }}
 
   {% comment %} link_list {% endcomment %}
-   2323
-  {% for link in section.settings['test-link-list'] %}
-    <div style="display: inline-block;border: 1px solid #ccc; padding: 2px 6px; margin: 4px;border-radius: 8px;">
-      {{ link.title }}
-    </div>
-  {% endfor %}
+  {% comment %}
+    {% for link in section.settings['test-link-list'] %}
+      <div style="display: inline-block;border: 1px solid #ccc; padding: 2px 6px; margin: 4px;border-radius: 8px;">
+        {{ link.title }}
+      </div>
+    {% endfor %}
+  {% endcomment %}
+  {% assign menu = section.settings.test_link_list %}
+
+  {% if menu != blank %}
+    <nav>
+      <h2>{{ menu.title | escape }}</h2>
+
+      <ul>
+        {% for link in menu.links %}
+          <li>
+            <a href="{{ link.url | escape }}">
+              {{ link.title | escape }}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </nav>
+  {% endif %}
 </div>
-<script>
-  console.log('test', "{{ section.settings.test-text | escape }}")
-  console.log('test', "{{ section.settings.test-lin | escape }}")
-</script>
 {% schema %}
 {
   "name": "DiffInputSetting",
