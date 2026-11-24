@@ -45,10 +45,10 @@
             "banner-image": "shopify://shop_images/CAFECUP_LisaCongdon_01.jpg",
             "banner-video": "shopify://files/videos/C0020.MP4",
             "banner-title": "2222",
-            "banner-title-color": "",
+            "banner-title-color": "#FFFFFF",
             "banner-title-font-size": 24,
             "banner-description": "33333333333",
-            "banner-description-color": "",
+            "banner-description-color": "#ED0909",
             "banner-description-font-size": 24
           }
         }
@@ -62,6 +62,7 @@
       "settings": {
         "swiper-id": "home-banner",
         "swiper-auto-play": false,
+        "banner-delay-time": 1,
         "banner-mask-opacity": 0.3
       }
     },
