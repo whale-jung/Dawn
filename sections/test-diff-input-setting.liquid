@@ -1,5 +1,7 @@
 <div>
-    collection: {{ section.settings.test-collection.products | json }}
+  {% for product in section.settings['test-collection'].products %}
+    {{ product.title }}
+  {% endfor %}
 </div>
 {% schema %}
 {
@@ -15,7 +17,7 @@
   ],
   "presets": [
     {
-        "name": "DiffInputSetting"
+      "name": "DiffInputSetting"
     }
   ]
 }
