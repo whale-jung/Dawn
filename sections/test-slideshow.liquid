@@ -58,10 +58,8 @@
 
   {% comment %} item标题 {% endcomment %}
   .swiper-banner-title {
-    {% comment %} color: var(--item-title-color); {% endcomment %}
-    {% comment %} font-size: var(--item-title-font-size); {% endcomment %}
-    color: green;
-    font-size: 30px;
+    color: var(--item-title-color);
+    font-size: var(--item-title-font-size);
   }
 
   {% comment %} item描述 {% endcomment %}
@@ -95,24 +93,18 @@
                 height="100%"
               >
             {% else %}
-              <video
-                class="swiper-banner-item-video"
-                preload="none"
-              >
-                {% comment %} poster="{{ block.setting.banner-video | asset_url }}" {% endcomment %}
-                {% comment %} <!-- 封面图 --> {% endcomment %}
-                muted
-                {% comment %} <!-- 静音，自动播放必备 --> {% endcomment %}
-                playsinline
-                {% comment %} <!-- 手机内联播放，不弹出全屏播放器 --> {% endcomment %}
-                loop
-                {% comment %} <!-- 循环 --> {% endcomment %}
-                controls
-                {% comment %} <!-- 是否显示播放控件，背景视频可以删掉 --> {% endcomment %}
-                >
-                <source src="{{ block.setting.banner-video | asset_url }}" type="video/mp4">
-                你的浏览器不支持视频
-              </video>
+              {% if block.settings['banner-video'] %}
+                {{
+                  block.settings['banner-video']
+                  | video_tag:
+                    image_size: '100%',
+                    auto_play: true,
+                    controls: false,
+                    muted: true,
+                    loop: true,
+                    class: 'swiper-banner-item-video'
+                }}
+              {% endif %}
             {% endif %}
 
             <div class="swiper-banner-content-mask">
