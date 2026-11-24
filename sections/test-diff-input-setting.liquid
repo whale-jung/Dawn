@@ -1,0 +1,17 @@
+<div>
+    collection: {{ section.settings.test-collection | json }}
+</div>
+{% schema %}
+{
+  "name": "DiffInputSetting",
+  "tag": "section",
+  "class": "diffInputSetting",
+  "settings": [
+    {
+      "type": "collection",
+      "id": "test-collection",
+      "label": "Test Collection"
+    }
+  ]
+}
+{% endschema %}
