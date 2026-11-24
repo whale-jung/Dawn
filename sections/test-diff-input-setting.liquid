@@ -43,7 +43,8 @@
       </div>
     {% endfor %}
   {% endcomment %}
-  {% assign menu = section.settings.test_link_list %}
+  {% assign menu_handle = 'main-menu' %}
+  {% assign menu = linklists[menu_handle] %}
 
   {% if menu != blank %}
     <nav>
