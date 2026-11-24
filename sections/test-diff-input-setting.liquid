@@ -1,3 +1,15 @@
+{% assign chosen_font = section.settings.text- %}
+
+{% style %}
+  {{ chosen_font | font_face: font_display: 'swap' }}
+
+  .font-demo {
+    font-family: {{ chosen_font.family }}, {{ chosen_font.fallback_families }};
+    font-weight: {{ chosen_font.weight }};
+    font-style: {{ chosen_font.style }};
+  }
+{% endstyle %}
+
 <div>
   <h3>collection</h3>
   <div style="display: flex; flex-wrap: wrap; gap: 8px; padding-block: 4px;">
