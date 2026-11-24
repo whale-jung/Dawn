@@ -48,9 +48,14 @@
       "name": "Notification",
       "settings": {
         "notification-text": "This is a notification!",
-        "notification-background-color": "#FFCE63",
-        "notification-text-color": "#F21F1F",
-        "notification-close-button-switch": true
+        "notification-background-color": "#ffce63",
+        "notification-text-color": "#f21f1f",
+        "notification-close-button-switch": true,
+        "test-article": "news/my-first-blog",
+        "test-article-list": [
+          "news/my-first-blog",
+          "news/my-second-blog"
+        ]
       }
     },
     "header": {
