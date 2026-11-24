@@ -1,0 +1,86 @@
+{% doc %}
+  Renders black friday count down in the main product.
+
+  @param {object} [block] - card message;
+  @param {boolean} [isMobile] - is mobile or not mobile;
+
+  @example
+  {% render 'test-black-friday-activity-countdown' %}
+{% enddoc %}
+
+<div class="section-{{ section.id }}-black-friday-activity-card">
+  {% comment %} 卡片左侧 {% endcomment %}
+  <div class="section-{{ section.id }}-black-friday-activity-msg">
+    <div class="section-{{ section.id }}-black-friday-activity-title">
+      {{ block.settings['activity-title'] }}
+    </div>
+
+    <div class="section-{{ section.id }}-black-friday-activity-discount-msg">
+      {{ block.settings['activity-discount-message'] }}
+    </div>
+
+    <div class="section-{{ section.id }}-black-friday-activity-prompt">
+      {{ block.settings['activity-prompt'] }}
+    </div>
+  </div>
+
+  {% comment %} 卡片右侧 {% endcomment %}
+  <div class="section-{{ section.id }}-black-friday-countdown">
+    <div class="section-{{ section.id }}-black-friday-countdown-title">
+    </div>3
+    <div class="section-{{ section.id }}-black-friday-countdown-date">
+      {{ day }} - {{ hour }} - {{ minute }} - {{ second }}
+    </div>
+  </div>
+</div>
+
+<script>
+  var day = 8;
+  var hour = 1;
+  var minute = 12;
+  var second = 45;
+</script>
+
+{% style %}
+  /* 卡片 */
+  .section-{{ section.id }}-black-friday-activity-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    border-radius: {{ block.settings.activity-card-border-radius }}px;
+    background: {{ block.settings.activity-card-background-color }};
+  }
+
+  /* 卡片左侧 */
+  .section-{{ section.id }}-black-friday-activity-msg {
+    line-height: 1;
+  }
+
+  .section-{{ section.id }}-black-friday-activity-title {
+    color: {{ block.settings.activity-title-color }};
+    font-size: {{ block.settings.activity-title-font-size }}px;
+  }
+
+  .section-{{ section.id }}-black-friday-activity-discount-msg {
+    line-height: 1.5;
+    /* color: {{ block.settings.activity-discount-message-color }}; */
+    background: {{ block.settings.activity-discount-message-color }};
+    /* 背景裁剪到文字轮廓，webkit前缀不能少（Safari） */
+    -webkit-background-clip: text;
+    background-clip: text;
+    /* 文字填充透明，透出下面渐变背景 */
+    -webkit-text-fill-color: transparent;
+    font-size: {{ block.settings.activity-discount-message-font-size }}px;
+  }
+
+  .section-{{ section.id }}-black-friday-activity-prompt {
+    color: {{ block.settings.activity-prompt-color }};
+    font-size: {{ block.settings.activity-prompt-font-size }}px;
+  }
+
+  /* 卡片右侧 */
+  .section-{{ section.id }}-black-friday-countdown {
+    color: #fff;
+  }
+{% endstyle %}

@@ -9,44 +9,60 @@
  */
 {
   "sections": {
-    "image_banner": {
-      "type": "image-banner",
+    "test_slideshow_UT9TgM": {
+      "type": "test-slideshow",
       "blocks": {
-        "heading_fhi44K": {
-          "type": "heading",
+        "image_3mVBnp": {
+          "type": "image",
           "settings": {
-            "heading": "CUP'S FAMILY",
-            "heading_size": "h1"
+            "image-or-video": "image",
+            "banner-image": "shopify://shop_images/sm-crescent-TY_waves.png",
+            "banner-title": "product01",
+            "banner-title-color": "#131111",
+            "banner-title-font-size": 24,
+            "banner-description": "ceshishidfheiotheptehqwpi",
+            "banner-description-color": "",
+            "banner-description-font-size": 24
           }
         },
-        "button": {
-          "type": "buttons",
+        "image_GHkecx": {
+          "type": "image",
           "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify://collections/all",
-            "button_style_secondary_1": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
+            "image-or-video": "image",
+            "banner-image": "shopify://shop_images/sm-crescent-TY_sea_2_2x_1997a244-3eff-413a-959c-520ce97a98ab.png",
+            "banner-title": "title",
+            "banner-title-color": "#ffffff",
+            "banner-title-font-size": 24,
+            "banner-description": "this is a test product",
+            "banner-description-color": "#d50c0c",
+            "banner-description-font-size": 24
+          }
+        },
+        "image_hCmwgG": {
+          "type": "image",
+          "settings": {
+            "image-or-video": "video",
+            "banner-image": "shopify://shop_images/CAFECUP_LisaCongdon_01.jpg",
+            "banner-video": "shopify://files/videos/C0020.MP4",
+            "banner-title": "2222",
+            "banner-title-color": "",
+            "banner-title-font-size": 24,
+            "banner-description": "33333333333",
+            "banner-description-color": "",
+            "banner-description-font-size": 24
           }
         }
       },
       "block_order": [
-        "heading_fhi44K",
-        "button"
+        "image_3mVBnp",
+        "image_GHkecx",
+        "image_hCmwgG"
       ],
+      "name": "Test Slideshow",
       "settings": {
-        "image": "shopify://shop_images/CAFECUP_LisaCongdon_01.jpg",
-        "image_overlay_opacity": 40,
-        "image_height": "large",
-        "image_behavior": "none",
-        "desktop_content_position": "bottom-center",
-        "desktop_content_alignment": "center",
-        "show_text_box": false,
-        "color_scheme": "scheme-3",
-        "stack_images_on_mobile": false,
-        "mobile_content_alignment": "center",
-        "show_text_below": false
+        "swiper-id": "home-banner",
+        "swiper-auto-play": false,
+        "banner-mask-opacity": 0.3
       }
     },
     "featured_collection": {
@@ -126,7 +142,7 @@
     }
   },
   "order": [
-    "image_banner",
+    "test_slideshow_UT9TgM",
     "featured_collection",
     "test_settings_and_blocks_day7_W8KxJq"
   ]

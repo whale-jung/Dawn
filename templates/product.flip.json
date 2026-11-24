@@ -19,9 +19,11 @@
             "text_style": "uppercase"
           }
         },
-        "title": {
-          "type": "title",
-          "settings": {}
+        "flip_title_nFDDKd": {
+          "type": "flip_title",
+          "settings": {
+            "flip_title": "product custom title-edit"
+          }
         },
         "price": {
           "type": "price",
@@ -58,7 +60,7 @@
       },
       "block_order": [
         "vendor",
-        "title",
+        "flip_title_nFDDKd",
         "price",
         "variant_picker",
         "quantity_selector",
@@ -85,6 +87,10 @@
     "disclosures": {
       "type": "disclosures",
       "settings": {
+        "heading": "Disclosures",
+        "heading_size": "h2",
+        "open_by_default": false,
+        "color_scheme": "",
         "padding_top": 36,
         "padding_bottom": 0
       }
