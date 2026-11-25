@@ -101,7 +101,8 @@
           "30oz-scout-black"
         ],
         "test-richtext": "<h3>testerqwet</h3><p><strong>teqtqtq</strong></p><p><em>dgwetewrt</em></p><p><a href=\"https://shopify.dev/docs/storefronts/themes/architecture/settings/input-settings#richtext\" title=\"https://shopify.dev/docs/storefronts/themes/architecture/settings/input-settings#richtext\">ewtqet</a></p>",
-        "test-text-alignment": "center"
+        "test-text-alignment": "center",
+        "test-url": "shopify://collections/bath"
       }
     }
   },
