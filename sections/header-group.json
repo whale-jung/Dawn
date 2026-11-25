@@ -66,6 +66,8 @@
         "mobile_logo_position": "center",
         "menu": "main-menu",
         "menu_type_desktop": "dropdown",
+        "product_menu_collection": "bath",
+        "product_menu_item_handle": "home",
         "sticky_header_type": "always",
         "show_line_separator": true,
         "color_scheme": "scheme-1",
@@ -102,7 +104,8 @@
         ],
         "test-richtext": "<h3>testerqwet</h3><p><strong>teqtqtq</strong></p><p><em>dgwetewrt</em></p><p><a href=\"https://shopify.dev/docs/storefronts/themes/architecture/settings/input-settings#richtext\" title=\"https://shopify.dev/docs/storefronts/themes/architecture/settings/input-settings#richtext\">ewtqet</a></p>",
         "test-text-alignment": "center",
-        "test-url": "shopify://collections/bath"
+        "test-url": "shopify://collections/bath",
+        "test-create-links": true
       }
     }
   },
