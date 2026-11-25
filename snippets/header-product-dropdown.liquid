@@ -1,0 +1,57 @@
+{% doc %}
+  Renders a wide dropdown under a menu item, listing products from a chosen collection.
+
+  @param {object} [link] - The top-level menu link (e.g. "Home").
+  @param {object} [collection] - The collection whose products to show.
+  @param {number} [index] - The menu item index, for unique element IDs.
+  @param {number} [limit] - Max products to show. Default 8.
+
+  @example
+  {% render 'header-product-dropdown', link: link, collection: section.settings.product_menu_collection, index: forloop.index, limit: 8 %}
+{% enddoc %}
+
+<header-menu>
+  <details id="Details-HeaderMenu-{{ index }}" class="mega-menu">
+    <summary
+      id="HeaderMenu-{{ link.handle }}"
+      class="header__menu-item list-menu__item link focus-inset"
+    >
+      <span{% if link.current or link.child_active %} class="header__active-menu-item"{% endif %}>
+        {{- link.title | escape -}}
+      </span>
+      {{- 'icon-caret.svg' | inline_asset_content -}}
+    </summary>
+    <div
+      id="MegaMenu-Content-{{ index }}"
+      class="mega-menu__content color-{{ section.settings.menu_color_scheme }} gradient motion-reduce global-settings-popup"
+      tabindex="-1"
+    >
+      <div class="page-width">
+        <ul class="header-product-menu" role="list">
+          {%- for product in collection.products limit: limit -%}
+            <li class="header-product-menu__item">
+              {% render 'card-product',
+                card_product: product,
+                media_aspect_ratio: 'square',
+                show_secondary_image: true,
+                lazy_load: true,
+                skip_styles: true,
+                section_id: section.id,
+                product_view_context: 'collection'
+              %}
+            </li>
+          {%- endfor -%}
+        </ul>
+        <div class="header-product-menu__view-all">
+          <a
+            href="{{ collection.url }}"
+            class="link underlined-link"
+            aria-label="{{ 'sections.featured_collection.view_all_label' | t: collection_name: collection.title | escape }}"
+          >
+            {{ 'sections.featured_collection.view_all' | t }}
+          </a>
+        </div>
+      </div>
+    </div>
+  </details>
+</header-menu>

@@ -16,6 +16,12 @@
   <link rel="stylesheet" href="{{ 'component-mega-menu.css' | asset_url }}" media="print" onload="this.media='all'">
 {%- endif -%}
 
+{%- if section.settings.product_menu_collection != blank -%}
+  <link rel="stylesheet" href="{{ 'component-mega-menu.css' | asset_url }}" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="{{ 'component-card.css' | asset_url }}" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="{{ 'component-price.css' | asset_url }}" media="print" onload="this.media='all'">
+{%- endif -%}
+
 <style>
   header-drawer {
     justify-self: start;
@@ -98,6 +104,27 @@
     min-width: 4.4rem;
     height: 4.4rem;
   }
+
+  {%- if section.settings.product_menu_collection != blank -%}
+    .header-product-menu {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+      margin: 0;
+      list-style: none;
+    }
+    .header-product-menu__item {
+      margin: 0;
+    }
+    .header-product-menu__view-all {
+      margin-top: 2rem;
+    }
+    @media screen and (min-width: 1200px) {
+      .header-product-menu {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+    }
+  {%- endif -%}
 </style>
 
 {%- style -%}
@@ -570,6 +597,22 @@
       ],
       "default": "dropdown",
       "label": "t:sections.header.settings.menu_type_desktop.label"
+    },
+    {
+      "type": "header",
+      "content": "Product dropdown menu"
+    },
+    {
+      "type": "collection",
+      "id": "product_menu_collection",
+      "label": "Collection"
+    },
+    {
+      "type": "text",
+      "id": "product_menu_item_handle",
+      "default": "home",
+      "label": "Menu item handle",
+      "info": "Handle of the top-level menu item that shows this collection's products, e.g. \"home\"."
     },
     {
       "type": "select",
