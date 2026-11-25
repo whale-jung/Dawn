@@ -71,10 +71,16 @@
   {{ section.settings['test-page'] | json }}
 
   {% comment %} product {% endcomment %}
-   {{ section.settings.test-product.title }} - {{ section.settings.test-product.price | money }}
+  {{ section.settings['test-product'].title }} - {{ section.settings['test-product'].price | money }}
 
-   {% comment %} product_list {% endcomment %}
-    
+  {% comment %} product_list {% endcomment %}
+  {% if section.settings['test-product-list'].size > 0 %}
+    {% for product in section.settings['test-product-list'] %}
+      <div style="display: inline-block;border: 1px solid #ccc; padding: 2px 6px; margin: 4px;border-radius: 8px;">
+        {{ product.title }}
+      </div>
+    {% endfor %}
+  {% endif %}
 </div>
 
 {% schema %}
