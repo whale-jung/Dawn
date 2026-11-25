@@ -72,6 +72,9 @@
 
   {% comment %} product {% endcomment %}
    {{ section.settings.test-product.title }} - {{ section.settings.test-product.price | money }}
+
+   {% comment %} product_list {% endcomment %}
+    
 </div>
 
 {% schema %}
@@ -134,6 +137,11 @@
       "type": "product",
       "id": "test-product",
       "label": "Test Product"
+    },
+    {
+      "type": "product_list",
+      "id": "test-product-list",
+      "label": "Test Product List"
     }
   ],
   "presets": [
