@@ -68,7 +68,10 @@
   {{ mo | json }}
 
   {% comment %} page {% endcomment %}
-   {{ section.settings.test-page | json }}
+  {{ section.settings['test-page'] | json }}
+
+  {% comment %} product {% endcomment %}
+   {{ section.settings.test-product | json }}
 </div>
 
 {% schema %}
@@ -126,6 +129,11 @@
       "type": "page",
       "id": "test-page",
       "label": "Test Page"
+    },
+    {
+      "type": "product",
+      "id": "test-product",
+      "label": "Test Product"
     }
   ],
   "presets": [
