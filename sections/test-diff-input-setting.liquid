@@ -81,8 +81,10 @@
           <div>{{ product.title | escape }}</div>
           <div>{{ product.price | money }}</div>
           <img
-            src="{{ product.featured_image }}"
-            width=""
+            src="{{ product.featured_image | image_url }}"
+            width="100%"
+            height="100%"
+            loading="lazy"
           >
         </div>
       {% endfor %}
