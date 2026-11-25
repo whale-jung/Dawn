@@ -75,11 +75,13 @@
 
   {% comment %} product_list {% endcomment %}
   {% if section.settings['test-product-list'].size > 0 %}
-    {% for product in section.settings['test-product-list'] %}
-      <div style="display: inline-block;border: 1px solid #ccc; padding: 2px 6px; margin: 4px;border-radius: 8px;">
-        {{ product.title }}
-      </div>
-    {% endfor %}
+    <div>
+      {% for product in section.settings['test-product-list'] %}
+        <div style="display: inline-block;border: 1px solid #ccc; padding: 2px 6px; margin: 4px;border-radius: 8px;">
+          {{ product.title }}
+        </div>
+      {% endfor %}
+    </div>
   {% endif %}
 </div>
 
