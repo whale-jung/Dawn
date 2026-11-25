@@ -90,7 +90,16 @@
         "test-link-list": "main-menu",
         "test-metaobject": "demo-cd5fva5z",
         "test-page": "contact",
-        "test-product": "30oz-scout-black"
+        "test-product": "30oz-scout-black",
+        "test-product-list": [
+          "12oz-nomad-flip-tumbler-citron",
+          "12oz-nomad-flip-tumbler-rain",
+          "16oz-cold-cup-citron",
+          "16oz-cold-cup-rain",
+          "26oz-wander-water-bottle-desert-tan",
+          "26oz-wander-water-bottle-sage-green",
+          "30oz-scout-black"
+        ]
       }
     }
   },
