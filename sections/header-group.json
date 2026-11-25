@@ -76,40 +76,11 @@
         "padding_top": 20,
         "padding_bottom": 20
       }
-    },
-    "test_diff_input_setting_zq4jmJ": {
-      "type": "test-diff-input-setting",
-      "name": "DiffInputSetting",
-      "settings": {
-        "test-text": "this is test text2",
-        "test-collection": "bath",
-        "test-color-scheme": "",
-        "test_font_picker": "bagel_fat_one_n4",
-        "test-html": "<div style=\"color: #ccc;font-weight: 500;font-size: 24px;\">2343142test</div>\n<span style=\"color: red;\">4243242</span>",
-        "test-inline-richtext": "<em>italic</em>teerte<strong>bold</strong>",
-        "test-link-list": "main-menu",
-        "test-metaobject": "demo-cd5fva5z",
-        "test-page": "contact",
-        "test-product": "30oz-scout-black",
-        "test-product-list": [
-          "12oz-nomad-flip-tumbler-citron",
-          "12oz-nomad-flip-tumbler-rain",
-          "16oz-cold-cup-citron",
-          "16oz-cold-cup-rain",
-          "26oz-wander-water-bottle-desert-tan",
-          "26oz-wander-water-bottle-sage-green",
-          "30oz-scout-black"
-        ],
-        "test-richtext": "<h3>testerqwet</h3><p><strong>teqtqtq</strong></p><p><em>dgwetewrt</em></p><p><a href=\"https://shopify.dev/docs/storefronts/themes/architecture/settings/input-settings#richtext\" title=\"https://shopify.dev/docs/storefronts/themes/architecture/settings/input-settings#richtext\">ewtqet</a></p>",
-        "test-text-alignment": "center",
-        "test-url": "shopify://collections/bath"
-      }
     }
   },
   "order": [
     "announcement-bar",
     "test_notification_k6gqBr",
-    "header",
-    "test_diff_input_setting_zq4jmJ"
+    "header"
   ]
 }

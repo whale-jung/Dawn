@@ -140,11 +140,37 @@
         "section-line-count": 3,
         "section-card-border-radius": 20
       }
+    },
+    "test_diff_input_setting_KaBJeU": {
+      "type": "test-diff-input-setting",
+      "name": "DiffInputSetting",
+      "settings": {
+        "test-text": "this is test text2",
+        "test-collection": "bedroom",
+        "test-color-scheme": "",
+        "test_font_picker": "sans_serif_n4",
+        "test-html": "<div style=\"color: #ccc;font-weight: 500;font-size: 24px;\">2343142test</div>",
+        "test-inline-richtext": "<em>italic</em>teerte<strong>bold</strong>",
+        "test-link-list": "customer-account-main-menu",
+        "test-metaobject": "",
+        "test-page": "contact",
+        "test-product": "16oz-cold-cup-rain",
+        "test-product-list": [
+          "26oz-wander-water-bottle-desert-tan",
+          "16oz-cold-cup-rain",
+          "16oz-cold-cup-citron"
+        ],
+        "test-richtext": "<p>贵</p><h4><em><strong>怒剑狂花</strong></em></h4><p>guigin</p>",
+        "test-text-alignment": "center",
+        "test-url": "shopify://pages/contact",
+        "test-create-links": true
+      }
     }
   },
   "order": [
     "test_slideshow_UT9TgM",
     "featured_collection",
-    "test_settings_and_blocks_day7_W8KxJq"
+    "test_settings_and_blocks_day7_W8KxJq",
+    "test_diff_input_setting_KaBJeU"
   ]
 }
