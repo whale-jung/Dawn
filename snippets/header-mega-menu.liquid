@@ -11,9 +11,7 @@
   <ul class="list-menu list-menu--inline" role="list">
     {%- for link in section.settings.menu.links -%}
       <li>
-        {%- if link.handle == section.settings.product_menu_item_handle and section.settings.product_menu_collection != blank -%}
-          {% render 'header-product-dropdown', link: link, collection: section.settings.product_menu_collection, index: forloop.index, limit: 8 %}
-        {%- elsif link.links != blank -%}
+        {%- if link.links != blank -%}
           <header-menu>
             <details id="Details-HeaderMenu-{{ forloop.index }}" class="mega-menu">
               <summary
