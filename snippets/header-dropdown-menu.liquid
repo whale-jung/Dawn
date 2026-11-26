@@ -13,7 +13,7 @@
       {{ block.settings['home-menu'].products | json }}
     {% endfor %}
 
-    {% for product in section.blocks['home-menu'].products %}
+    {% for product in section.blocks.home-menu.products %}
       <div style="display: inline-block;border: 1px solid #ccc; padding: 2px 6px; margin: 4px;border-radius: 8px;">
         {{ product.title }}
       </div>
