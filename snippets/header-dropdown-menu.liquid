@@ -10,7 +10,7 @@
 <nav class="header__inline-menu">
   <ul class="list-menu list-menu--inline" role="list">
     {% for block in section.blocks %}
-      {{ block.settings['home-menu'] }}
+      {{ block.settings['home-menu'].products | json }}
     {% endfor %}
 
     {% for product in section.blocks['home-menu'].products %}
