@@ -8,7 +8,15 @@
 {% enddoc %}
 
 <script>
-  console.log('settings', {{ section.blocks | json }});
+  console.log('blocks', [
+    {%- for block in section.blocks -%}
+      {
+        id: {{ block.id | json }},
+        type: {{ block.type | json }},
+        settings: {{ block.settings | json }}
+      }
+    {%- endfor -%}
+  ]);
 </script>
 
 <nav class="header__inline-menu">
