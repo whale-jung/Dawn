@@ -8,13 +8,13 @@
 {% enddoc %}
 
 <script>
-  console.log("blocks1")
+  console.log("blocks11")
   var blocks = "{{ section.settings }}"
   console.log("blocks2", blocks)
 
-  blocks.forEach((item) => {
+  {% comment %} blocks.forEach((item) => {
     console.log('block item', block);
-  })
+  }) {% endcomment %}
 </script>
 
 <nav class="header__inline-menu">
