@@ -6,7 +6,7 @@
 {% enddoc %}
 
 <div class="menu-content-box">
-  {{ block.settings['big-bottle'].label }}
+  {{ block.settings['big-bottle'] | json }}
   {% comment %} {% for item in block.settings %}
     {{ item.products | json }}
   {% endfor %} {% endcomment %}
