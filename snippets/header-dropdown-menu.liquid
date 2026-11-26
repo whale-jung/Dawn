@@ -9,8 +9,7 @@
 
 <nav class="header__inline-menu">
   {%- for block in section.blocks -%}
-    { id: {{ block.id | json }}, type: {{ block.type | json }}, settings: {{ block.settings | json }} }
-    {%- unless forloop.last -%},{%- endunless -%}
+    {{ block | json }}
   {%- endfor -%}
   <ul class="list-menu list-menu--inline" role="list">
     {%- for link in section.settings.menu.links -%}
