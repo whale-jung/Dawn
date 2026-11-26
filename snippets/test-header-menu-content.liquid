@@ -1,15 +1,13 @@
 {% doc %}
-    Renders the header menu's content
+  Renders the header menu's content
 
-    @param {object} [section] - The current header section context, supplied implicitly when rendered from that section and used for menu settings.
-    @param {object} [block] - menu content block data
-
+  @param {object} [section] - The current header section context, supplied implicitly when rendered from that section and used for menu settings.
+  @param {object} [block] - menu content block data
 {% enddoc %}
 
 <div class="menu-content-box">
-    23424
-    {% comment %} {{ blocks.settings | json }}
-    {% for block in blocks %}
-        {{ block | json }}
-    {% endfor %} {% endcomment %}
+  23424
+  {% for item in block %}
+    {{ item | json }}
+  {% endfor %}
 </div>
