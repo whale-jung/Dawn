@@ -84,7 +84,6 @@
         {%- else -%}
           {% assign unique_title = link.title | downcase | append: '-menu' %}
           {% assign block = section.blocks | where: 'type', unique_title | first %}
-          {{ block | json }}
 
           <a
             id="HeaderMenu-{{ link.handle }}"
