@@ -7,6 +7,24 @@
   {% render 'header-dropdown-menu' %}
 {% enddoc %}
 
+{% style %}
+  list-menu--inline .li {
+    position: relative;
+  }
+
+  list-menu--inline li:hover .menu-content-box{
+    visibility: visible;
+  }
+
+  .menu-content-box {
+    visibility: hidden;
+    position: absolute;
+    top: 0px;
+    left: 50%;
+    z-index: 9999;
+  }
+{% endstyle %}
+
 <nav class="header__inline-menu">
   <ul class="list-menu list-menu--inline" role="list">
     {%- for link in section.settings.menu.links -%}
@@ -109,21 +127,3 @@
     {%- endfor -%}
   </ul>
 </nav>
-
-{% style %}
-  list-menu--inline .li {
-    position: relative;
-  }
-  
-  list-menu--inline li:hover .menu-content-box{
-    visibility: visible;
-  }
-
-  .menu-content-box {
-    visibility: hidden;
-    position: absolute;
-    top: 0px;
-    left: 50%;
-    z-index: 9999;
-  }
-{% endstyle %}
