@@ -62,16 +62,16 @@
     "header": {
       "type": "header",
       "blocks": {
-        "menu_QcQVdq": {
-          "type": "menu",
+        "home_menu_HNqdyy": {
+          "type": "home-menu",
           "settings": {
-            "home-menu": "home-menu",
-            "catalog-menu": "catagory-menu"
+            "summer-mugs": "home-menu",
+            "autumn-mugs": "catagory-menu"
           }
         }
       },
       "block_order": [
-        "menu_QcQVdq"
+        "home_menu_HNqdyy"
       ],
       "settings": {
         "logo_position": "middle-left",
