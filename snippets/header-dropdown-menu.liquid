@@ -102,7 +102,7 @@
               {{- link.title | escape -}}
             </span>
           </a>
-          {% if block != empty %}
+          {% if block != blank %}
             {% render 'test-header-menu-content', block: block %}
           {% endif %}
         {%- endif -%}
