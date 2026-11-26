@@ -10,6 +10,7 @@
 <nav class="header__inline-menu">
   <ul class="list-menu list-menu--inline" role="list">
     {%- for link in section.settings.menu.links -%}
+      {{ link }}
       <li>
         {%- if link.links != blank -%}
           <header-menu>
@@ -95,7 +96,7 @@
                 class="header__active-menu-item"
               {% endif %}
             >
-              {{- link.title | escape -}}??
+              {{- link.title | escape -}}
             </span>
           </a>
         {%- endif -%}
