@@ -5,12 +5,11 @@
   @param {object} [block] - menu content block data
 {% enddoc %}
 <script>
-    console.log(,{{ block | json }})
+  console.log('block',{{ block.settings | json }})
 </script>
 
 <div class="menu-content-box">
-  23424
-  2
+  23424 2
   {% for item in block.settings %}
     {{ item.products | json }}
   {% endfor %}
