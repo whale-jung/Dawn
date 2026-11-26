@@ -12,7 +12,7 @@
     when 'home-menu'
       assign collection_keys_string = 'summer-mugs,autumn-mugs'
     when 'catalog-menu'
-      assign collection_keys_string = 'big-bottle,middle-bottle'
+      assign collection_keys_string = 'big-bottle,middle-bottle,'
   endcase
 
   assign collection_keys = collection_keys_string | split: ','

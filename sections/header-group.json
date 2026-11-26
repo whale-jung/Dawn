@@ -65,8 +65,9 @@
         "catalog_menu_3b3Rgt": {
           "type": "catalog-menu",
           "settings": {
-            "big-bottle": "big-bottle",
-            "middle-bottle": "middle-bottle"
+            "small-bottle": "small-bottle",
+            "middle-bottle": "middle-bottle",
+            "big-bottle": "big-bottle"
           }
         },
         "home_menu_HNqdyy": {
