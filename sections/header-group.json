@@ -62,22 +62,16 @@
     "header": {
       "type": "header",
       "blocks": {
-        "home_menu_TLTM3C": {
-          "type": "home-menu",
+        "menu_X3VigE": {
+          "type": "menu",
           "settings": {
-            "home-menu": "home-menu"
-          }
-        },
-        "catalog_menu_4gLqXM": {
-          "type": "catalog-menu",
-          "settings": {
+            "home-menu": "home-menu",
             "catalog-menu": "catagory-menu"
           }
         }
       },
       "block_order": [
-        "home_menu_TLTM3C",
-        "catalog_menu_4gLqXM"
+        "menu_X3VigE"
       ],
       "settings": {
         "logo_position": "middle-left",
