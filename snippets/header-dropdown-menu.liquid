@@ -104,7 +104,7 @@
           </header-menu>
         {%- else -%}
           {% assign unique_title = link.title | downcase | append: '-menu' %}
-          {% assign blocks = section.blocks | where: 'type', unique_title | first %}
+          {% assign block = section.blocks | where: 'type', unique_title | first %}
 
           <a
             id="HeaderMenu-{{ link.handle }}"
