@@ -104,7 +104,7 @@
           </header-menu>
         {%- else -%}
           {% assign unique_title = link.title | downcase | append: '-menu' %}
-          {% assign block = section.blocks | where: 'type', unique_title | first %}
+          {% assign blocks = section.blocks | where: 'type', unique_title | first %}
 
           <a
             id="HeaderMenu-{{ link.handle }}"
@@ -123,7 +123,7 @@
             </span>
           </a>
           {% if block != blank %}
-            {% render 'test-header-menu-content', block: block %}
+            {% render 'test-header-menu-content', blocks: blocks %}
           {% endif %}
         {%- endif -%}
       </li>
