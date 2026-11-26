@@ -7,10 +7,6 @@
   {% render 'header-dropdown-menu' %}
 {% enddoc %}
 
-<script>
-  console.log('section', {{ section.blocks | where: "name", "home-menu" }});
-</script>
-
 <nav class="header__inline-menu">
   <ul class="list-menu list-menu--inline" role="list">
     {% assign menu = section.blocks %}
