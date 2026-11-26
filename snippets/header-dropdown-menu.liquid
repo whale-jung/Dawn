@@ -7,23 +7,6 @@
   {% render 'header-dropdown-menu' %}
 {% enddoc %}
 
-<script>
-  const blocksData = [];
-  {% for block in section.blocks %}
-  blocksData.push({
-    id: "{{ block.id }}",
-    type: "{{ block.type }}",
-    title: "{{ block.settings.title | escape }}",
-    settings: "{{ block.settings.home-menu }}"
-  });
-  {% endfor %}
-
-  // 然后你就可以用JS循环了
-  blocksData.forEach(block => {
-    console.log(33, block);
-  });
-</script>
-
 <nav class="header__inline-menu">
   <ul class="list-menu list-menu--inline" role="list">
     {% for block in section.blocks %}
