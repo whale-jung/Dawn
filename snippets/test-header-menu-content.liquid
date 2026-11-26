@@ -6,8 +6,11 @@
 {% enddoc %}
 
 <div class="menu-content-box">
+  333
   {{ block.settings | json }}
-  {% comment %} {% for item in block.settings %}
-    {{ item.products | json }}
-  {% endfor %} {% endcomment %}
+  {% comment %}
+    {% for item in block.settings %}
+      {{ item.products | json }}
+    {% endfor %}
+  {% endcomment %}
 </div>
