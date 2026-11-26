@@ -97,10 +97,10 @@
           {% assign block = section.blocks | where: 'type', 'menu' | first %}
           {% assign unique_title = link.title | downcase | append: "-menu" %}
           {{ unique_title }}
-          {{ block.settings[unique_title].products | json }}
+          {% comment %} {{ block.settings[unique_title].products | json }}
           {% for block in block.settings %}
             {{ block }}
-          {% endfor %}
+          {% endfor %} {% endcomment %}
 
           <a
             id="HeaderMenu-{{ link.handle }}"
