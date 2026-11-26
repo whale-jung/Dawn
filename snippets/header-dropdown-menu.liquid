@@ -92,8 +92,8 @@
             </details>
           </header-menu>
         {%- else -%}
-          {% assign content = section.blocks | where: 'name', 'menu' %}
-          {{ section.blocks.menu | json }}
+          {% assign content = section.blocks | where: 'name', 'Menu' %}
+          {{ content | json }}
           {% comment %}
             {% for block in content %}
               {{ block.settings['home-menu'].products | json }}
