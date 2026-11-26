@@ -14,8 +14,7 @@
     id: "{{ block.id }}",
     type: "{{ block.type }}",
     title: "{{ block.settings.title | escape }}",
-    image: "{{ block.settings.image | image_url }}",
-    link: "{{ block.settings.link | escape }}"
+    settings: "{{ block.settings }}"
   });
   {% endfor %}
 
