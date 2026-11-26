@@ -14,8 +14,9 @@
 <nav class="header__inline-menu">
   <ul class="list-menu list-menu--inline" role="list">
     {% assign menu = section.blocks %}
-    {}
-    {{ section.blocks | where: "name", "home-menu" }}
+    {% for block in section.blocks %}
+      {{ block | json }}
+    {% endfor %}
     {%- for link in section.settings.menu.links -%}
       <li>
         {%- if link.links != blank -%}
