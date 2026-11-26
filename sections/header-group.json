@@ -62,6 +62,13 @@
     "header": {
       "type": "header",
       "blocks": {
+        "catalog_menu_GkgGaQ": {
+          "type": "catalog-menu",
+          "settings": {
+            "big-bottle": "big-bottle",
+            "middle-bottle": "middle-bottle"
+          }
+        },
         "home_menu_HNqdyy": {
           "type": "home-menu",
           "settings": {
@@ -71,6 +78,7 @@
         }
       },
       "block_order": [
+        "catalog_menu_GkgGaQ",
         "home_menu_HNqdyy"
       ],
       "settings": {
