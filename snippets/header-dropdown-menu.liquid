@@ -8,8 +8,8 @@
 {% enddoc %}
 
 <script>
-  var blocks = {{ section.settings }}
-  console.log("block", {{ section.blocks }})
+  var blocks = "{{ section.settings }}"
+  console.log("block", blocks)
 
   blocks.forEach((item) => {
     console.log('block item', block);
