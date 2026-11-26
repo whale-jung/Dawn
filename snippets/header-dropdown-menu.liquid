@@ -10,7 +10,7 @@
 {% stylesheet %}
   .list-menu--inline li:hover .menu-content-box{
     visibility: visible;
-    height: calc(100vh - 200px);
+    height: fit-content;
   }
 
   .menu-content-box {
@@ -21,6 +21,7 @@
     z-index: 9999;
     width: 100%;
     max-height: calc(100vh - 200px);
+    overflow-h: auto
     height: 0;
     background: pink;
     transition: height .3s;
