@@ -4,13 +4,10 @@
   @param {object} [section] - The current header section context, supplied implicitly when rendered from that section and used for menu settings.
   @param {object} [block] - menu content block data
 {% enddoc %}
-<script>
-  console.log('block',{{ block.settings | json }})
-</script>
 
 <div class="menu-content-box">
   23424 2
-  {{block.settings.big-bottle.products }}
+  {{ block.settings['big-bottle'].products | json }}
   {% for item in block.settings %}
     {{ item.products | json }}
   {% endfor %}
