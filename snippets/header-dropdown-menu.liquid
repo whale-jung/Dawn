@@ -9,7 +9,7 @@
 
 <nav class="header__inline-menu">
   <ul class="list-menu list-menu--inline" role="list">
-    {% for block in section.blocks %}
+    {% comment %} {% for block in section.blocks %}
       {{ block.settings['home-menu'].products | json }}
     {% endfor %}
 
@@ -17,7 +17,7 @@
       <div style="display: inline-block;border: 1px solid #ccc; padding: 2px 6px; margin: 4px;border-radius: 8px;">
         {{ product.title }}
       </div>
-    {% endfor %}
+    {% endfor %} {% endcomment %}
 
     {%- for link in section.settings.menu.links -%}
       <li>
