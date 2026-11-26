@@ -9,18 +9,6 @@
 
 <nav class="header__inline-menu">
   <ul class="list-menu list-menu--inline" role="list">
-    {% comment %}
-      {% for block in section.blocks %}
-        {{ block.settings['home-menu'].products | json }}
-      {% endfor %}
-
-      {% for product in section.blocks['home-menu'].products %}
-        <div style="display: inline-block;border: 1px solid #ccc; padding: 2px 6px; margin: 4px;border-radius: 8px;">
-          {{ product.title }}
-        </div>
-      {% endfor %}
-    {% endcomment %}
-
     {%- for link in section.settings.menu.links -%}
       <li>
         {%- if link.links != blank -%}
