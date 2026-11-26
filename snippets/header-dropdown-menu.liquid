@@ -103,7 +103,7 @@
             </span>
           </a>
           {% if block != empty %}
-            {% render 'test-header-menu-content', content: menu_content %}
+            {% render 'test-header-menu-content', block: block %}
           {% endif %}
         {%- endif -%}
       </li>
