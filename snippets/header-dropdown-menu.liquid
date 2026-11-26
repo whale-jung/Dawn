@@ -8,9 +8,11 @@
 {% enddoc %}
 
 <script>
-  
-  console.log('settings?', {{ section.blocks | json }});
-  section.blo
+  {% assign blocks = section.blocks %}
+
+  blocks.forEach((item) => {
+    console.log('block item', block);
+  })
 </script>
 
 <nav class="header__inline-menu">
