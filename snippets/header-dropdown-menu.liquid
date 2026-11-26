@@ -84,7 +84,7 @@
         {%- else -%}
           {% assign block = section.blocks | where: 'type', 'menu' | first %}
           {% assign unique_title = link.title | downcase | append: '-menu' %}
-          {% assign menu_content = block.settings[unique_title] %}
+          {% assign menu_content = block.settings[unique_title].products %}
           {% if unique_title == 'home-menu' %}
             {{ menu_content | json }}
           {% endif %}
