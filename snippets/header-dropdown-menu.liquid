@@ -9,7 +9,8 @@
 
 <nav class="header__inline-menu">
   <ul class="list-menu list-menu--inline" role="list">
-    {}
+    {% assign menu = section.blocks %}
+    {{ menu | json }}
     {%- for link in section.settings.menu.links -%}
       <li>
         {%- if link.links != blank -%}
