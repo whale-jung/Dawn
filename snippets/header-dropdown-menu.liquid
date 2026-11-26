@@ -106,8 +106,9 @@
               {{- link.title | escape -}}
             </span>
           </a>
-          {}
-          {% render "test-header-menu-content", content: menu_content  %}
+          {% if menu_content.size > 0 %}
+            {% render 'test-header-menu-content', content: menu_content %}
+          {% endif %}
         {%- endif -%}
       </li>
     {%- endfor -%}
@@ -115,5 +116,4 @@
 </nav>
 
 {% style %}
-
 {% endstyle %}
