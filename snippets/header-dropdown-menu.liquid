@@ -93,7 +93,7 @@
           </header-menu>
         {%- else -%}
           {% assign content = section.blocks | where: 'type', 'menu' %}
-          {{ content | json }}
+          {{ content.settings.home_menu | json }}
           {% comment %}
             {% for block in content %}
               {{ block.settings['home-menu'].products | json }}
