@@ -6,11 +6,12 @@
   @example
   {% render 'header-dropdown-menu' %}
 {% enddoc %}
+<script></script>
 
 <nav class="header__inline-menu">
   <ul class="list-menu list-menu--inline" role="list">
     {% for block in section.blocks %}
-      {{ block.settings.home-menu }}
+      {{ block.settings['home-menu'] }}
     {% endfor %}
     {%- for link in section.settings.menu.links -%}
       <li>
