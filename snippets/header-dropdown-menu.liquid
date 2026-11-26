@@ -94,9 +94,9 @@
             </details>
           </header-menu>
         {%- else -%}
-          {% assign content = section.blocks | where: 'type', 'menu' %}
-          {{ content.settings }}
-          {% for block in content.settings %}
+          {% assign block = section.blocks | where: 'type', 'menu' %}
+          {{ block.settings['home-menu'] }}
+          {% for block in block.settings %}
             {{ block }}
           {% endfor %}
 
