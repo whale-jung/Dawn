@@ -29,6 +29,13 @@
     {% for block in section.blocks %}
       {{ block.settings['home-menu'] }}
     {% endfor %}
+
+    {% for product in section.blocks['test-collection'].products %}
+      <div style="display: inline-block;border: 1px solid #ccc; padding: 2px 6px; margin: 4px;border-radius: 8px;">
+        {{ product.title }}
+      </div>
+    {% endfor %}
+
     {%- for link in section.settings.menu.links -%}
       <li>
         {%- if link.links != blank -%}
