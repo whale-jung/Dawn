@@ -8,7 +8,9 @@
 {% enddoc %}
 <script>
   console.log("header", {{ section.settings.menu.links | json }});
-  {}
+  {% for link in section.settings.menu.links %}
+    {{ link |json }}
+  {% endfor %}
 </script>
 <nav class="header__inline-menu">
   <ul class="list-menu list-menu--inline" role="list">
