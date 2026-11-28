@@ -32,7 +32,6 @@ product-menu-drawer {
 .pm-button > svg { width: 1.4rem; }
 .pm-button .icon-caret { position: static; width: 1rem; }
 
-.pm-overlay,
 .pm-drawer::backdrop {
   background: rgba(var(--color-foreground), .35);
 }
@@ -40,7 +39,8 @@ product-menu-drawer {
 .pm-overlay {
   position: fixed;
   inset: 0;
-  z-index: -1;
+  z-index: -2;
+  background: rgb(0 0 0 / var(--pm-overlay-opacity, 35%));
 }
 
 .header-wrapper:has(product-mega-menu .pm-overlay:not([hidden])) {
@@ -55,8 +55,6 @@ product-menu-drawer {
   z-index: -1;
   pointer-events: none;
 }
-
-.pm-overlay { z-index: -2; }
 
 .pm-panel {
   position: absolute;

@@ -589,6 +589,17 @@
       "label": "t:sections.header.settings.menu_type_desktop.label"
     },
     {
+      "type": "range",
+      "id": "pm_overlay_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 35,
+      "label": "Desktop menu overlay opacity",
+      "visible_if": "{{ section.settings.menu_type_desktop == 'product_mega' }}"
+    },
+    {
       "type": "number",
       "id": "pm_mobile_product_limit",
       "label": "Mobile product limit",

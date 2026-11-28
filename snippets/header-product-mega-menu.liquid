@@ -2,7 +2,13 @@
   @param {object} section - Header section
 {% enddoc %}
 <product-mega-menu class="header__inline-menu">
-  <div class="pm-overlay" data-pm-overlay hidden></div>
+  <div
+    class="pm-overlay"
+    data-pm-overlay
+    style="--pm-overlay-opacity: {{ section.settings.pm_overlay_opacity | default: 35 }}%"
+    aria-hidden="true"
+    hidden
+  ></div>
   <nav class="pm-nav" aria-label="{{ 'sections.header.menu' | t }}">
     <ul class="list-menu list-menu--inline" role="list">
       {% for parent in section.settings.menu.links %}
