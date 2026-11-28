@@ -11,19 +11,6 @@
   ></div>
   <nav class="pm-nav" aria-label="{{ 'sections.header.menu' | t }}">
     <ul class="list-menu list-menu--inline" role="list">
-  <pre>
-{% for link in section.settings.menu.links %}
-  标题：{{ link.title | escape }}
-  地址：{{ link.url | escape }}
-  子菜单数量：{{ link.links.size }}
-
-  {% for child_link in link.links %}
-    子菜单标题：{{ child_link.title | escape }}
-    子菜单地址：{{ child_link.url | escape }}
-  {% endfor %}
-{% endfor %}
-</pre>
-
       {% for parent in section.settings.menu.links %}
         {% assign panel_id = section.id | append: '-PM-' | append: forloop.index %}
         <li class="pm-top">
