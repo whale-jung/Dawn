@@ -6,6 +6,10 @@ class ProductMegaMenu extends HTMLElement {
     this.hover = matchMedia('(hover: hover)');
     this.desktop = matchMedia('(min-width: 990px)');
     const options = { signal: this.events.signal };
+    const updateOverlay = () => this.updateOverlay();
+    this.panelObserver = new ResizeObserver(updateOverlay);
+    window.addEventListener('resize', updateOverlay, options);
+    window.addEventListener('scroll', updateOverlay, { ...options, passive: true });
 
     for (const item of this.items) {
       item.addEventListener('pointerenter', (event) => {
@@ -60,6 +64,7 @@ class ProductMegaMenu extends HTMLElement {
       this.active.querySelector(':scope > button').setAttribute('aria-expanded', 'false');
       this.active.querySelector(':scope > .pm-panel').hidden = true;
     }
+    this.panelObserver.disconnect();
     this.active = next;
     this.overlay.hidden = !next;
     this.closest('sticky-header')?.toggleAttribute('data-pm-open', Boolean(next));
@@ -67,7 +72,17 @@ class ProductMegaMenu extends HTMLElement {
     button.setAttribute('aria-expanded', 'true');
     const panel = next.querySelector(':scope > .pm-panel');
     panel.hidden = false;
-    panel.style.setProperty('--pm-offset', `${Math.max(0, panel.getBoundingClientRect().top)}px`);
+    this.panelObserver.observe(panel);
+    this.updateOverlay();
+  }
+
+  updateOverlay() {
+    const panel = this.active?.querySelector(':scope > .pm-panel');
+    if (!panel) return;
+    const top = Math.max(0, panel.getBoundingClientRect().top);
+    panel.style.setProperty('--pm-offset', `${top}px`);
+    const bottom = Math.max(0, panel.getBoundingClientRect().bottom);
+    this.overlay.style.setProperty('--pm-overlay-top', `${bottom}px`);
   }
 
   select(id) {
@@ -84,6 +99,7 @@ class ProductMegaMenu extends HTMLElement {
     for (const button of this.active.querySelectorAll('.pm-categories button')) {
       button.setAttribute('aria-expanded', String(button.getAttribute('aria-controls') === id));
     }
+    this.updateOverlay();
   }
 }
 

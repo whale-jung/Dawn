@@ -38,22 +38,9 @@ product-menu-drawer {
 
 .pm-overlay {
   position: fixed;
-  inset: 0;
-  z-index: -2;
+  inset: var(--pm-overlay-top, 100vh) 0 0;
+  z-index: 1;
   background: rgb(0 0 0 / var(--pm-overlay-opacity, 35%));
-}
-
-.header-wrapper:has(product-mega-menu .pm-overlay:not([hidden])) {
-  isolation: isolate;
-}
-
-.header-wrapper:has(product-mega-menu .pm-overlay:not([hidden]))::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: rgb(var(--color-background));
-  z-index: -1;
-  pointer-events: none;
 }
 
 .pm-panel {
