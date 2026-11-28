@@ -21,7 +21,6 @@
               <div class="pm-layout page-width">
                 <ul class="list-menu pm-categories" role="list">
                   {% for child in parent.links %}
-                    <pre>{{ child | json }}</pre>
                     {% assign category_id = panel_id | append: '-' | append: forloop.index %}
                     <li data-pm-category="{{ category_id }}"{% if forloop.first %} data-pm-active{% endif %}>
                       <a class="pm-category" href="{{ child.url }}">{% render 'product-mega-category', item: child %}</a>
