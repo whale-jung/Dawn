@@ -66,6 +66,7 @@
         "mobile_logo_position": "center",
         "menu": "main-menu",
         "menu_type_desktop": "product_mega",
+        "pm_overlay_opacity": 68,
         "pm_mobile_banner_level_2": false,
         "pm_mobile_banner_level_3": false,
         "sticky_header_type": "always",
