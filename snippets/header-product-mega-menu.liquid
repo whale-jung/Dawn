@@ -9,9 +9,10 @@
     aria-hidden="true"
     hidden
   ></div>
-  {{ section.settings.menu.links | json }}
   <nav class="pm-nav" aria-label="{{ 'sections.header.menu' | t }}">
     <ul class="list-menu list-menu--inline" role="list">
+  {{ section.settings.menu.links | json }}
+
       {% for parent in section.settings.menu.links %}
         {% assign panel_id = section.id | append: '-PM-' | append: forloop.index %}
         <li class="pm-top">
