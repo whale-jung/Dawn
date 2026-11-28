@@ -12,7 +12,6 @@
   <nav class="pm-nav" aria-label="{{ 'sections.header.menu' | t }}">
     <ul class="list-menu list-menu--inline" role="list">
       {% for parent in section.settings.menu.links %}
-        {{ parent.links | json }}
         {% assign panel_id = section.id | append: '-PM-' | append: forloop.index %}
         <li class="pm-top">
           <a class="header__menu-item link focus-inset" href="{{ parent.url }}"{% if parent.current %} aria-current="page"{% endif %}>{{ parent.title | escape }}</a>
@@ -22,6 +21,7 @@
               <div class="pm-layout page-width">
                 <ul class="list-menu pm-categories" role="list">
                   {% for child in parent.links %}
+                    {{ child | json }}
                     {% assign category_id = panel_id | append: '-' | append: forloop.index %}
                     <li data-pm-category="{{ category_id }}"{% if forloop.first %} data-pm-active{% endif %}>
                       <a class="pm-category" href="{{ child.url }}">{% render 'product-mega-category', item: child %}</a>
