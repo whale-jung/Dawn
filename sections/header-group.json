@@ -61,32 +61,11 @@
     },
     "header": {
       "type": "header",
-      "blocks": {
-        "catalog_menu_3b3Rgt": {
-          "type": "catalog-menu",
-          "settings": {
-            "small-bottle": "small-bottle",
-            "middle-bottle": "middle-bottle",
-            "big-bottle": "big-bottle"
-          }
-        },
-        "home_menu_HNqdyy": {
-          "type": "home-menu",
-          "settings": {
-            "summer-mugs": "home-menu",
-            "autumn-mugs": "catagory-menu"
-          }
-        }
-      },
-      "block_order": [
-        "catalog_menu_3b3Rgt",
-        "home_menu_HNqdyy"
-      ],
       "settings": {
         "logo_position": "middle-left",
         "mobile_logo_position": "center",
         "menu": "main-menu",
-        "menu_type_desktop": "mega",
+        "menu_type_desktop": "mega-product",
         "sticky_header_type": "always",
         "show_line_separator": true,
         "color_scheme": "scheme-1",
