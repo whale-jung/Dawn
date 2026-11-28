@@ -1,0 +1,19 @@
+{% doc %}
+  @param {object} section - Header section
+{% enddoc %}
+<div class="pm-trust">
+  {% for block in section.blocks %}
+    {% if block.type == 'mega_menu_trust_item' %}
+      <div {{ block.shopify_attributes }}>
+        {% if block.settings.icon != blank %}
+          {{ block.settings.icon | image_url: width: 64 | image_tag: width: 32, loading: 'lazy', alt: '' }}
+        {% endif %}
+        {% if block.settings.link != blank %}
+          <a href="{{ block.settings.link }}">{{ block.settings.heading | escape }}</a>
+        {% else %}
+          <span>{{ block.settings.heading | escape }}</span>
+        {% endif %}
+      </div>
+    {% endif %}
+  {% endfor %}
+</div>
