@@ -7,7 +7,6 @@
   {% render 'header-mega-menu' %}
 {% enddoc %}
 <script>
-  console.log("header", {{ section.settings.menu.links | json }});
   {% for link in section.settings.menu.links %}
     console.log('link', {{ link |json }})
   {% endfor %}
