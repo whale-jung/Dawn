@@ -7,6 +7,33 @@
   {% render 'header-dropdown-menu' %}
 {% enddoc %}
 
+{% stylesheet %}
+  .menu-content-box {
+    visibility: hidden;
+    position: absolute;
+    top: 44px;
+    left: 0;
+    z-index: 9999;
+    width: 100%;
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+    background: pink;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform .3s ease, visibility 0s linear .3s;
+  }
+
+  .menu-content-box.is-open {
+    visibility: visible;
+    transform: scaleY(1);
+    transition: transform .3s ease, visibility 0s;
+  }
+
+  .menu-content-box.is-swapping {
+    transition: none;
+  }
+{% endstylesheet %}
+
 <nav class="header__inline-menu">
   <ul class="list-menu list-menu--inline" role="list">
     {%- for link in section.settings.menu.links -%}
@@ -82,6 +109,9 @@
             </details>
           </header-menu>
         {%- else -%}
+          {% assign unique_title = link.title | downcase | append: '-menu' %}
+          {% assign block = section.blocks | where: 'type', unique_title | first %}
+
           <a
             id="HeaderMenu-{{ link.handle }}"
             href="{{ link.url }}"
@@ -98,8 +128,64 @@
               {{- link.title | escape -}}
             </span>
           </a>
+          {% if block != blank %}
+            {% render 'test-header-menu-content', block: block %}
+          {% endif %}
         {%- endif -%}
       </li>
     {%- endfor -%}
   </ul>
 </nav>
+
+<script>
+  (function () {
+    if (window.__headerMenuHoverInitialized) return;
+    window.__headerMenuHoverInitialized = true;
+
+    var menu = document.querySelector('.header__inline-menu');
+    if (!menu) return;
+
+    var openBox = null;
+
+    menu.addEventListener('mouseover', function (event) {
+      var li = event.target.closest('.list-menu--inline > li');
+      if (!li) return;
+
+      var box = li.querySelector('.menu-content-box');
+
+      if (!box) {
+        // 移到没有下拉框的菜单项：收起当前下拉框（带收起动画）
+        if (openBox) {
+          openBox.classList.remove('is-open');
+          openBox = null;
+        }
+        return;
+      }
+
+      if (box === openBox) return;
+
+      if (openBox) {
+        // 两个下拉框之间切换：瞬间交换内容，不做收起/展开动画
+        openBox.classList.add('is-swapping');
+        box.classList.add('is-swapping');
+        openBox.classList.remove('is-open');
+        box.classList.add('is-open');
+        void box.offsetWidth; // 强制重排，让上面的变更在 transition:none 下立即生效
+        openBox.classList.remove('is-swapping');
+        box.classList.remove('is-swapping');
+      } else {
+        // 首次打开：带展开动画
+        box.classList.add('is-open');
+      }
+
+      openBox = box;
+    });
+
+    menu.addEventListener('mouseleave', function () {
+      if (openBox) {
+        openBox.classList.remove('is-open'); // 移出导航：带收起动画
+        openBox = null;
+      }
+    });
+  })();
+</script>

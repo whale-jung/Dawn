@@ -1,0 +1,199 @@
+{% assign chosen_font = section.settings.test_font_picker %}
+
+{% style %}
+  {{ chosen_font | font_face: font_display: 'swap' }}
+
+  .font-demo {
+    font-family: {{ chosen_font.family }}, {{ chosen_font.fallback_families }};
+    font-weight: {{ chosen_font.weight }};
+    font-style: {{ chosen_font.style }};
+  }
+{% endstyle %}
+
+<div>
+  {% comment %} input-settings {% endcomment %}
+  <h3>collection</h3>
+  <div style="display: flex; flex-wrap: wrap; gap: 8px; padding-block: 4px;">
+    {% for product in section.settings['test-collection'].products %}
+      <div style="display: inline-block;border: 1px solid #ccc; padding: 2px 6px; margin: 4px;border-radius: 8px;">
+        {{ product.title }}
+      </div>
+    {% endfor %}
+  </div>
+
+  {% comment %} settings_schema.json中的color_palette应用 {% endcomment %}
+  <div style="width: 300px;height: 300px;background: {{ settings.test-color-palette.test }};">23143</div>
+
+  {% comment %} font_picker {% endcomment %}
+  <div class="font-demo">test font_picker</div>
+
+  {% comment %} html {% endcomment %}
+  <div class="custom-html">
+    {{ section.settings['test-html'] }}
+  </div>
+
+  {% comment %} inline_richtext {% endcomment %}
+  {{ section.settings['test-inline-richtext'] }}
+
+  {% comment %} link_list {% endcomment %}
+  {% comment %}
+    {% for link in section.settings['test-link-list'] %}
+      <div style="display: inline-block;border: 1px solid #ccc; padding: 2px 6px; margin: 4px;border-radius: 8px;">
+        {{ link.title }}
+      </div>
+    {% endfor %}
+  {% endcomment %}
+  {% assign menu_handle = 'main-menu' %}
+  {% assign menu = linklists[menu_handle] %}
+
+  {% if menu != blank %}
+    <nav>
+      <h2>{{ menu.title | escape }}</h2>
+
+      <ul>
+        {% for link in menu.links %}
+          <li>
+            <a href="{{ link.url | escape }}">
+              {{ link.title | escape }}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </nav>
+  {% endif %}
+
+  {% comment %} metaobject {% endcomment %}
+  {% assign mo_handle = section.settings.test_metaobject %}
+  {% assign mo = metaobjects.DEMO[mo_handle] %}
+  {{ mo | json }}
+
+  {% comment %} page {% endcomment %}
+  {{ section.settings['test-page'] | json }}
+
+  {% comment %} product {% endcomment %}
+  {{ section.settings['test-product'].title }} - {{ section.settings['test-product'].price | money }}
+
+  {% comment %} product_list {% endcomment %}
+  {% if section.settings['test-product-list'].size > 0 %}
+    <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+      {% for product in section.settings['test-product-list'] %}
+        <div style="width: calc((100% - 3 * 8px) / 4);border: 1px solid #ccc; padding: 2px 6px;border-radius: 8px;">
+          <div>{{ product.title | escape }}</div>
+          <div>{{ product.price | money }}</div>
+          <img
+            src="{{ product.featured_image | image_url }}"
+            width="100%"
+            height="auto-fit"
+            loading="lazy"
+          >
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  {% comment %} richtext {% endcomment %}
+  {{ section.settings['test-richtext'] }}
+
+  {% comment %} text-alignment {% endcomment %}
+  <div style="text-align: {{ section.settings.test-text-alignment }}">test</div>
+
+  {% comment %} url {% endcomment %}
+  <div>{{ section.settings['test-url'] }}</div>
+</div>
+
+{% schema %}
+{
+  "name": "DiffInputSetting",
+  "tag": "section",
+  "class": "diffInputSetting",
+  "settings": [
+    {
+      "type": "text",
+      "id": "test-text",
+      "label": "Test Text",
+      "default": "this is test text2"
+    },
+    {
+      "type": "collection",
+      "id": "test-collection",
+      "label": "Test Collection"
+    },
+    {
+      "type": "color_scheme",
+      "id": "test-color-scheme",
+      "label": "Test Color Scheme"
+    },
+    {
+      "type": "font_picker",
+      "id": "test_font_picker",
+      "label": "Test Font Picker",
+      "default": "helvetica_n4"
+    },
+    {
+      "type": "html",
+      "id": "test-html",
+      "label": "Test Html",
+      "default": "<div style='color: #ccc;font-weight: 500;font-size: 24px;'>2343142test</div>"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "test-inline-richtext",
+      "label": "Test Inline Richtext",
+      "default": "<em>italic</em>teerte<b>bold</b>"
+    },
+    {
+      "type": "link_list",
+      "id": "test-link-list",
+      "label": "Test Link List"
+    },
+    {
+      "type": "metaobject",
+      "id": "test-metaobject",
+      "label": "Test Metaobject",
+      "metaobject_type": "DEMO"
+    },
+    {
+      "type": "page",
+      "id": "test-page",
+      "label": "Test Page"
+    },
+    {
+      "type": "product",
+      "id": "test-product",
+      "label": "Test Product"
+    },
+    {
+      "type": "product_list",
+      "id": "test-product-list",
+      "label": "Test Product List"
+    },
+    {
+      "type": "richtext",
+      "id": "test-richtext",
+      "label": "Test Richtext"
+    },
+    {
+      "type": "text_alignment",
+      "id": "test-text-alignment",
+      "label": "Test Text Alignment"
+    },
+    {
+      "type": "url",
+      "id": "test-url",
+      "label": "Test Url"
+    },
+    {
+      "type": "checkbox",
+      "id": "test-create-links",
+      "label": "Test Create Links",
+      "info": "test create links [learn](https://platform.deepseek.com/usage)",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "DiffInputSetting"
+    }
+  ]
+}
+{% endschema %}

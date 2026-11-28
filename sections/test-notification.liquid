@@ -11,6 +11,7 @@
 
 {% if section.settings.notification-text and section.settings.notification-close-button-switch %}
     <div class="section-{{ section.id }}-notification">
+        {{ section.settings.test-blog | json }}
         {{ section.settings.notification-text }}
     </div>
 {% endif %}
@@ -42,6 +43,21 @@
             "id": "notification-close-button-switch",
             "label": "show close button",
             "default": false
+        },
+        {
+            "type": "article",
+            "id": "test-article",
+            "label": "Article"
+        },
+        {
+            "type": "article_list",
+            "id": "test-article-list",
+            "label": "Article List"
+        },
+        {
+            "type": "blog",
+            "id": "test-blog",
+            "label": "Blog"
         }
     ],
     "presets": [

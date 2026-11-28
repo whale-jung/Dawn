@@ -8,7 +8,7 @@
   onload="this.media='all'"
 >
 
-{%- if settings.predictive_search_enabled -%}
+{%- if settings.predictive_search_enabled or section.settings.menu_type_desktop == 'product_mega' -%}
   <link rel="stylesheet" href="{{ 'component-price.css' | asset_url }}" media="print" onload="this.media='all'">
 {%- endif -%}
 
@@ -16,7 +16,15 @@
   <link rel="stylesheet" href="{{ 'component-mega-menu.css' | asset_url }}" media="print" onload="this.media='all'">
 {%- endif -%}
 
+{%- if section.settings.menu_type_desktop == 'product_mega' -%}
+  {{ 'component-product-mega-menu.css' | asset_url | stylesheet_tag }}
+  <script src="{{ 'product-mega-menu.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+
 <style>
+  .header {
+    position: relative;
+  }
   header-drawer {
     justify-self: start;
     margin-left: -1.2rem;
@@ -172,14 +180,17 @@
       endif
 
       if section.settings.menu != blank
-        render 'header-drawer', show_country_selector: country_selector, show_language_selector: language_selector, show_social_links: social_links
+        if section.settings.menu_type_desktop == 'product_mega'
+          render 'header-product-menu-drawer', section: section
+        else
+          render 'header-drawer', show_country_selector: country_selector, show_language_selector: language_selector, show_social_links: social_links
+        endif
       endif
 
       if render_search_left
         render 'header-search', input_id: 'Search-In-Modal-1'
       endif
     -%}
-
     {%- if section.settings.logo_position != 'middle-center' -%}
       {%- if request.page_type == 'index' -%}
         <h1 class="header__heading">
@@ -217,6 +228,8 @@
       if section.settings.menu != blank
         if section.settings.menu_type_desktop == 'dropdown'
           render 'header-dropdown-menu'
+        elsif section.settings.menu_type_desktop == 'product_mega'
+          render 'header-product-mega-menu', section: section
         elsif section.settings.menu_type_desktop != 'drawer'
           render 'header-mega-menu'
         endif
@@ -412,7 +425,7 @@
     }
 
     hide() {
-      if (this.headerIsAlwaysSticky) return;
+      if (this.headerIsAlwaysSticky || this.hasAttribute('data-pm-open')) return;
       this.header.classList.add('shopify-section-header-hidden', 'shopify-section-header-sticky');
       this.closeMenuDisclosure();
       this.closeSearchModal();
@@ -566,10 +579,38 @@
         {
           "value": "drawer",
           "label": "t:sections.header.settings.menu_type_desktop.options__3.label"
+        },
+        {
+          "value": "product_mega",
+          "label": "Product mega menu"
         }
       ],
       "default": "dropdown",
       "label": "t:sections.header.settings.menu_type_desktop.label"
+    },
+    {
+      "type": "range",
+      "id": "pm_overlay_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 35,
+      "label": "Desktop menu overlay opacity",
+      "visible_if": "{{ section.settings.menu_type_desktop == 'product_mega' }}"
+    },
+    {
+      "type": "number",
+      "id": "pm_mobile_product_limit",
+      "default": 4,
+      "label": "Mobile product limit",
+      "visible_if": "{{ section.settings.menu_type_desktop == 'product_mega' }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "pm_mobile_banner_level_2",
+      "label": "Show banner on mobile category screens",
+      "visible_if": "{{ section.settings.menu_type_desktop == 'product_mega' }}"
     },
     {
       "type": "select",
@@ -681,6 +722,52 @@
   "blocks": [
     {
       "type": "@app"
+    },
+    {
+      "type": "mega_menu_trust_item",
+      "name": "Trust item",
+      "settings": [
+        { "type": "image_picker", "id": "icon", "label": "Icon" },
+        { "type": "text", "id": "heading", "label": "Heading" },
+        { "type": "url", "id": "link", "label": "Link" }
+      ]
+    },
+    {
+      "type": "home-menu",
+      "name": "Home Menu",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "summer-mugs",
+          "label": "Summer Mugs",
+        },
+        {
+          "type": "collection",
+          "id": "autumn-mugs",
+          "label": "Autumn Mugs",
+        }
+      ]
+    },
+     {
+      "type": "catalog-menu",
+      "name": "Catalog Menu",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "small-bottle",
+          "label": "Small Bottle",
+        },
+        {
+          "type": "collection",
+          "id": "middle-bottle",
+          "label": "Middle Bottle",
+        },
+        {
+          "type": "collection",
+          "id": "big-bottle",
+          "label": "Big Bottle",
+        }
+      ]
     }
   ]
 }

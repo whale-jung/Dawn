@@ -1,0 +1,60 @@
+{% doc %}
+  @param {object} section - Header section
+{% enddoc %}
+<product-mega-menu class="header__inline-menu">
+  <div
+    class="pm-overlay"
+    data-pm-overlay
+    style="--pm-overlay-opacity: {{ section.settings.pm_overlay_opacity | default: 35 }}%"
+    aria-hidden="true"
+    hidden
+  ></div>
+  <nav class="pm-nav" aria-label="{{ 'sections.header.menu' | t }}">
+    <ul class="list-menu list-menu--inline" role="list">
+      {% for parent in section.settings.menu.links %}
+        {% assign panel_id = section.id | append: '-PM-' | append: forloop.index %}
+        <li class="pm-top">
+          <a class="header__menu-item link focus-inset" href="{{ parent.url }}"{% if parent.current %} aria-current="page"{% endif %}>{{ parent.title | escape }}</a>
+          {% if parent.links != blank %}
+            <button type="button" class="pm-button" aria-controls="{{ panel_id }}" aria-expanded="false" aria-label="{{ parent.title | escape }}">{{ 'icon-caret.svg' | inline_asset_content }}</button>
+            <div id="{{ panel_id }}" class="pm-panel gradient color-{{ section.settings.menu_color_scheme }}" hidden>
+              <div class="pm-layout page-width">
+                <ul class="list-menu pm-categories" role="list">
+                  {% for child in parent.links %}
+                    {% assign category_id = panel_id | append: '-' | append: forloop.index %}
+                    <li data-pm-category="{{ category_id }}"{% if forloop.first %} data-pm-active{% endif %}>
+                      <a class="pm-category" href="{{ child.url }}">{% render 'product-mega-category', item: child %}</a>
+                      {% if child.type == 'collection_link' or child.links != blank %}
+                        <button type="button" class="pm-button" aria-controls="{{ category_id }}" aria-expanded="{% if forloop.first %}true{% else %}false{% endif %}" aria-label="{{ child.title | escape }}">{{ 'icon-caret.svg' | inline_asset_content }}</button>
+                      {% endif %}
+                    </li>
+                  {% endfor %}
+                </ul>
+                <div>
+                  {% for child in parent.links %}
+                    <div id="{{ panel_id }}-{{ forloop.index }}" class="pm-category-panel"{% unless forloop.first %} hidden{% endunless %}>
+                      <div class="pm-category-content">
+                        <div>
+                          {% if child.type == 'collection_link' %}
+                            {% render 'product-mega-products', collection: child.object, limit: 4 %}
+                          {% endif %}
+                          {% for nested in child.links %}
+                            <a class="pm-category" href="{{ nested.url }}">{% render 'product-mega-category', item: nested %}</a>
+                          {% endfor %}
+                        </div>
+                        {% if child.type == 'collection_link' %}{% assign primary = child.object %}{% else %}{% assign primary = nil %}{% endif %}
+                        {% if parent.type == 'collection_link' %}{% assign fallback = parent.object %}{% else %}{% assign fallback = nil %}{% endif %}
+                        {% render 'product-mega-promo', primary: primary, fallback: fallback %}
+                      </div>
+                    </div>
+                  {% endfor %}
+                </div>
+                {% render 'product-mega-trust', section: section %}
+              </div>
+            </div>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  </nav>
+</product-mega-menu>

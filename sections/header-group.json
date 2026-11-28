@@ -48,9 +48,15 @@
       "name": "Notification",
       "settings": {
         "notification-text": "This is a notification!",
-        "notification-background-color": "#FFCE63",
-        "notification-text-color": "#F21F1F",
-        "notification-close-button-switch": true
+        "notification-background-color": "#ffce63",
+        "notification-text-color": "#f21f1f",
+        "notification-close-button-switch": true,
+        "test-article": "news/my-first-blog",
+        "test-article-list": [
+          "news/my-first-blog",
+          "news/my-second-blog"
+        ],
+        "test-blog": ""
       }
     },
     "header": {
@@ -59,7 +65,10 @@
         "logo_position": "middle-left",
         "mobile_logo_position": "center",
         "menu": "main-menu",
-        "menu_type_desktop": "dropdown",
+        "menu_type_desktop": "product_mega",
+        "pm_overlay_opacity": 68,
+        "pm_mobile_banner_level_2": false,
+        "pm_mobile_banner_level_3": false,
         "sticky_header_type": "always",
         "show_line_separator": true,
         "color_scheme": "scheme-1",
@@ -67,8 +76,8 @@
         "enable_country_selector": true,
         "enable_language_selector": true,
         "margin_bottom": 0,
-        "padding_top": 20,
-        "padding_bottom": 20
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     }
   },

@@ -17,7 +17,15 @@
 
   .swiper-button-prev,
   .swiper-button-next {
-    color: red;
+    color: #d88c5b;
+    width: 44px;
+    height: 44px;
+  }
+
+  .swiper-button-prev svg,
+  .swiper-button-next svg {
+    width: 24px;
+    height: 24px;
   }
 
   {% comment %} 轮播item {% endcomment %}
@@ -98,10 +106,11 @@
                   block.settings['banner-video']
                   | video_tag:
                     image_size: '100%',
-                    auto_play: true,
+                    autoplay: true,
                     controls: false,
                     muted: true,
                     loop: true,
+                    playsinline: true,
                     class: 'swiper-banner-item-video'
                 }}
               {% endif %}
@@ -127,8 +136,16 @@
   </div>
 
   <div class="swiper-pagination"></div>
-  <div class="swiper-button-prev"></div>
-  <div class="swiper-button-next"></div>
+  <div class="swiper-button-prev" aria-label="上一张">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="15 18 9 12 15 6"></polyline>
+    </svg>
+  </div>
+  <div class="swiper-button-next" aria-label="下一张">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </div>
 </div>
 
 <!-- 3. 引入脚本并初始化 -->

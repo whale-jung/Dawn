@@ -1,0 +1,25 @@
+{% doc %}
+  @param {object} [primary] - Category collection
+  @param {object} [fallback] - Parent collection
+  @param {boolean} [mobile] - Render mobile art when available
+{% enddoc %}
+{% liquid
+  assign fields = primary.metafields.custom
+  if fields.menu_banner_image.value == blank
+    assign fields = fallback.metafields.custom
+  endif
+  assign image = fields.menu_banner_image.value
+  if mobile and image != blank
+    assign image = fields.menu_banner_mobile_image.value | default: image
+  endif
+%}
+{% if image != blank %}
+  <aside class="pm-promo">
+    {{ image | image_url: width: 720 | image_tag: widths: '240, 360, 540, 720', sizes: '(min-width: 990px) 25vw, 90vw', loading: 'lazy' }}
+    {% if fields.menu_banner_heading.value != blank %}<strong>{{ fields.menu_banner_heading.value | escape }}</strong>{% endif %}
+    {% if fields.menu_banner_description.value != blank %}<p>{{ fields.menu_banner_description.value | escape | newline_to_br }}</p>{% endif %}
+    {% if fields.menu_banner_button_label.value != blank and fields.menu_banner_link.value != blank %}
+      <a href="{{ fields.menu_banner_link.value | escape }}">{{ fields.menu_banner_button_label.value | escape }}</a>
+    {% endif %}
+  </aside>
+{% endif %}

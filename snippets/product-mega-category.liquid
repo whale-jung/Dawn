@@ -1,0 +1,7 @@
+{% doc %}
+  @param {object} item - Navigation link
+{% enddoc %}
+{% if item.type == 'collection_link' and item.object.image != blank %}
+  {{ item.object.image | image_url: width: 120 | image_tag: loading: 'lazy', alt: '' }}
+{% endif %}
+{{ item.title | escape }}

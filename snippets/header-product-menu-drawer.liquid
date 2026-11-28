@@ -1,0 +1,65 @@
+{% doc %}
+  @param {object} section - Header section
+{% enddoc %}
+{% liquid
+  assign mobile_product_limit = section.settings.pm_mobile_product_limit | default: 4
+  if mobile_product_limit < 1
+    assign mobile_product_limit = 4
+  endif
+%}
+<product-menu-drawer>
+  <button class="pm-button header__icon header__icon--menu focus-inset" type="button" aria-expanded="false" aria-controls="PMDrawer-{{ section.id }}" aria-label="{{ 'sections.header.menu' | t }}" data-pm-open>
+    <span class="svg-wrapper">{{ 'icon-hamburger.svg' | inline_asset_content }}</span>
+  </button>
+  <dialog id="PMDrawer-{{ section.id }}" class="pm-drawer gradient color-{{ section.settings.menu_color_scheme }}" aria-label="{{ 'sections.header.menu' | t }}">
+    <button class="pm-button pm-close" type="button" data-pm-close aria-label="{{ 'accessibility.close' | t }}">
+      <span class="svg-wrapper">{{ 'icon-close.svg' | inline_asset_content }}</span>
+    </button>
+    <div class="pm-drawer-pages">
+      <div class="pm-page" data-pm-page>
+        <ul class="list-menu" role="list">
+          {% for parent in section.settings.menu.links %}
+            <li>
+              <a class="pm-category" href="{{ parent.url }}">{{ parent.title | escape }}</a>
+              {% if parent.links != blank %}
+                <button type="button" class="pm-button" data-pm-enter="PMMobile-{{ section.id }}-{{ forloop.index }}" aria-label="{{ parent.title | escape }}">{{ 'icon-arrow.svg' | inline_asset_content }}</button>
+              {% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% for parent in section.settings.menu.links %}
+        {% if parent.links == blank %}{% continue %}{% endif %}
+        {% assign parent_id = section.id | prepend: 'PMMobile-' | append: '-' | append: forloop.index %}
+        {% if parent.type == 'collection_link' %}{% assign fallback = parent.object %}{% else %}{% assign fallback = nil %}{% endif %}
+        <div id="{{ parent_id }}" class="pm-page" data-pm-page inert hidden>
+          <button type="button" class="pm-button pm-back" data-pm-back aria-label="{{ 'general.pagination.previous' | t }}"><span class="svg-wrapper">{{ 'icon-arrow.svg' | inline_asset_content }}</span>{{ parent.title | escape }}</button>
+          <ul class="list-menu" role="list">
+            {% for child in parent.links %}
+              <li>
+                <a class="pm-category" href="{{ child.url }}">{% render 'product-mega-category', item: child %}</a>
+                {% if child.type == 'collection_link' or child.links != blank %}
+                  <button type="button" class="pm-button" data-pm-enter="{{ parent_id }}-{{ forloop.index }}" aria-label="{{ child.title | escape }}">{{ 'icon-arrow.svg' | inline_asset_content }}</button>
+                {% endif %}
+              </li>
+            {% endfor %}
+          </ul>
+          {% if section.settings.pm_mobile_banner_level_2 %}{% render 'product-mega-promo', fallback: fallback, mobile: true %}{% endif %}
+        </div>
+        {% for child in parent.links %}
+          {% if child.type != 'collection_link' and child.links == blank %}{% continue %}{% endif %}
+          <div id="{{ parent_id }}-{{ forloop.index }}" class="pm-page" data-pm-page inert hidden>
+            <button type="button" class="pm-button pm-back" data-pm-back aria-label="{{ 'general.pagination.previous' | t }}"><span class="svg-wrapper">{{ 'icon-arrow.svg' | inline_asset_content }}</span>{{ child.title | escape }}</button>
+            {% if child.type == 'collection_link' %}
+              {% render 'product-mega-products', collection: child.object, limit: mobile_product_limit, image_and_title_only: true %}
+            {% else %}
+              {% for nested in child.links %}
+                <a class="pm-category" href="{{ nested.url }}">{% render 'product-mega-category', item: nested %}</a>
+              {% endfor %}
+            {% endif %}
+          </div>
+        {% endfor %}
+      {% endfor %}
+    </div>
+  </dialog>
+</product-menu-drawer>
