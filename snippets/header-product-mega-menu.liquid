@@ -16,8 +16,8 @@
                 <ul class="list-menu pm-categories" role="list">
                   {% for child in parent.links %}
                     {% assign category_id = panel_id | append: '-' | append: forloop.index %}
-                    <li>
-                      <a class="pm-category" href="{{ child.url }}" data-pm-category="{{ category_id }}">{% render 'product-mega-category', item: child %}</a>
+                    <li data-pm-category="{{ category_id }}"{% if forloop.first %} data-pm-active{% endif %}>
+                      <a class="pm-category" href="{{ child.url }}">{% render 'product-mega-category', item: child %}</a>
                       {% if child.type == 'collection_link' or child.links != blank %}
                         <button type="button" class="pm-button" aria-controls="{{ category_id }}" aria-expanded="{% if forloop.first %}true{% else %}false{% endif %}" aria-label="{{ child.title | escape }}">{{ 'icon-caret.svg' | inline_asset_content }}</button>
                       {% endif %}

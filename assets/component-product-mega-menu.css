@@ -96,6 +96,50 @@ product-menu-drawer {
   color: inherit;
 }
 
+.pm-categories.list-menu {
+  display: grid;
+  align-content: start;
+  gap: .6rem;
+}
+
+.pm-categories > li {
+  min-height: 4.4rem;
+  border-radius: 999px;
+  font-size: 1.6rem;
+  line-height: 1.25;
+}
+
+.pm-categories > li[data-pm-active] {
+  background: #feeeee;
+  color: #bd2428;
+  font-weight: 700;
+}
+
+.pm-panel .pm-categories .pm-category {
+  align-self: stretch;
+  min-width: 0;
+  padding: .8rem 0 .8rem 1.4rem;
+  text-decoration: none;
+}
+
+.pm-panel .pm-categories > li:not(:has(button)) .pm-category {
+  padding-inline-end: 1.4rem;
+}
+
+.pm-categories .pm-button {
+  display: grid;
+  flex: none;
+  place-items: center;
+  align-self: stretch;
+  width: 3.6rem;
+  padding: 0;
+  border-radius: 999px;
+}
+
+.pm-categories .pm-button .icon-caret {
+  transform: rotate(-90deg);
+}
+
 .pm-category img { width: 4.4rem; height: auto; }
 
 .pm-products {

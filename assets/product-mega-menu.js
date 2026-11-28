@@ -78,6 +78,9 @@ class ProductMegaMenu extends HTMLElement {
     for (const panel of this.active.querySelectorAll('.pm-category-panel')) {
       panel.hidden = panel.id !== id;
     }
+    for (const category of this.active.querySelectorAll('[data-pm-category]')) {
+      category.toggleAttribute('data-pm-active', category.dataset.pmCategory === id);
+    }
     for (const button of this.active.querySelectorAll('.pm-categories button')) {
       button.setAttribute('aria-expanded', String(button.getAttribute('aria-controls') === id));
     }
