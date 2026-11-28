@@ -12,7 +12,7 @@
   <nav class="pm-nav" aria-label="{{ 'sections.header.menu' | t }}">
     <ul class="list-menu list-menu--inline" role="list">
       {% for parent in section.settings.menu.links %}
-        {{ parent | json }}
+        {{ parent.links | json }}
         {% assign panel_id = section.id | append: '-PM-' | append: forloop.index %}
         <li class="pm-top">
           <a class="header__menu-item link focus-inset" href="{{ parent.url }}"{% if parent.current %} aria-current="page"{% endif %}>{{ parent.title | escape }}</a>
