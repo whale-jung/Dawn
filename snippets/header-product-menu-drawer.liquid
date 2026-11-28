@@ -1,6 +1,12 @@
 {% doc %}
   @param {object} section - Header section
 {% enddoc %}
+{% liquid
+  assign mobile_product_limit = section.settings.pm_mobile_product_limit | default: 4
+  if mobile_product_limit < 1
+    assign mobile_product_limit = 4
+  endif
+%}
 <product-menu-drawer>
   <button class="pm-button header__icon header__icon--menu focus-inset" type="button" aria-expanded="false" aria-controls="PMDrawer-{{ section.id }}" aria-label="{{ 'sections.header.menu' | t }}" data-pm-open>
     <span class="svg-wrapper">{{ 'icon-hamburger.svg' | inline_asset_content }}</span>
@@ -44,17 +50,13 @@
           {% if child.type != 'collection_link' and child.links == blank %}{% continue %}{% endif %}
           <div id="{{ parent_id }}-{{ forloop.index }}" class="pm-page" data-pm-page inert hidden>
             <button type="button" class="pm-button pm-back" data-pm-back aria-label="{{ 'general.pagination.previous' | t }}"><span class="svg-wrapper">{{ 'icon-arrow.svg' | inline_asset_content }}</span>{{ child.title | escape }}</button>
-            {% if child.type == 'collection_link' and section.settings.pm_mobile_product_limit > 0 %}
-              {% render 'product-mega-products', collection: child.object, limit: section.settings.pm_mobile_product_limit %}
+            {% if child.type == 'collection_link' %}
+              {% render 'product-mega-products', collection: child.object, limit: mobile_product_limit, image_and_title_only: true %}
+            {% else %}
+              {% for nested in child.links %}
+                <a class="pm-category" href="{{ nested.url }}">{% render 'product-mega-category', item: nested %}</a>
+              {% endfor %}
             {% endif %}
-            {% for nested in child.links %}
-              <a class="pm-category" href="{{ nested.url }}">{% render 'product-mega-category', item: nested %}</a>
-            {% endfor %}
-            {% if section.settings.pm_mobile_banner_level_3 %}
-              {% if child.type == 'collection_link' %}{% assign primary = child.object %}{% else %}{% assign primary = nil %}{% endif %}
-              {% render 'product-mega-promo', primary: primary, fallback: fallback, mobile: true %}
-            {% endif %}
-            {% if child.type == 'collection_link' %}{% render 'product-mega-trust', section: section %}{% endif %}
           </div>
         {% endfor %}
       {% endfor %}

@@ -1,28 +1,31 @@
 {% doc %}
   @param {object} collection - Selected collection
   @param {number} limit - Maximum products
+  @param {boolean} [image_and_title_only] - Show only linked product images and titles
 {% enddoc %}
 <div class="pm-products">
   {% for product in collection.products limit: limit %}
-    {% assign fields = product.metafields.custom %}
     <a class="pm-card" href="{{ product.url }}">
       {% if product.featured_image %}
         {{ product.featured_image | image_url: width: 480 | image_tag: widths: '160, 240, 320, 480', sizes: '(min-width: 990px) 18vw, 45vw', loading: 'lazy', alt: '' }}
       {% endif %}
       <strong>{{ product.title | escape }}</strong>
-      {% if fields.menu_subtitle.value != blank %}<span>{{ fields.menu_subtitle.value | escape }}</span>{% endif %}
-      {% if product.available and fields.menu_badge.value != blank %}
-        <span class="badge color-{{ settings.sale_badge_color_scheme }}"
-          style="{% if fields.menu_badge_background.value != blank %}background:{{ fields.menu_badge_background.value | escape }};{% endif %}{% if fields.menu_badge_text_color.value != blank %}color:{{ fields.menu_badge_text_color.value | escape }}{% endif %}">
-          {{ fields.menu_badge.value | escape }}
-        </span>
-      {% elsif product.available == false %}
-        <span class="badge color-{{ settings.sold_out_badge_color_scheme }}">{{ 'products.product.sold_out' | t }}</span>
-      {% endif %}
-      {% render 'price', product: product, use_variant: false %}
+      {% unless image_and_title_only %}
+        {% assign fields = product.metafields.custom %}
+        {% if fields.menu_subtitle.value != blank %}<span>{{ fields.menu_subtitle.value | escape }}</span>{% endif %}
+        {% if product.available and fields.menu_badge.value != blank %}
+          <span class="badge color-{{ settings.sale_badge_color_scheme }}"
+            style="{% if fields.menu_badge_background.value != blank %}background:{{ fields.menu_badge_background.value | escape }};{% endif %}{% if fields.menu_badge_text_color.value != blank %}color:{{ fields.menu_badge_text_color.value | escape }}{% endif %}">
+            {{ fields.menu_badge.value | escape }}
+          </span>
+        {% elsif product.available == false %}
+          <span class="badge color-{{ settings.sold_out_badge_color_scheme }}">{{ 'products.product.sold_out' | t }}</span>
+        {% endif %}
+        {% render 'price', product: product, use_variant: false %}
+      {% endunless %}
     </a>
   {% endfor %}
 </div>
-{% if collection.products_count > limit %}
+{% if image_and_title_only != true and collection.products_count > limit %}
   <a href="{{ collection.url }}">{{ 'sections.collection_list.view_all' | t }}</a>
 {% endif %}

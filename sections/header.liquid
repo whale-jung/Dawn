@@ -602,6 +602,7 @@
     {
       "type": "number",
       "id": "pm_mobile_product_limit",
+      "default": 4,
       "label": "Mobile product limit",
       "visible_if": "{{ section.settings.menu_type_desktop == 'product_mega' }}"
     },
@@ -609,12 +610,6 @@
       "type": "checkbox",
       "id": "pm_mobile_banner_level_2",
       "label": "Show banner on mobile category screens",
-      "visible_if": "{{ section.settings.menu_type_desktop == 'product_mega' }}"
-    },
-    {
-      "type": "checkbox",
-      "id": "pm_mobile_banner_level_3",
-      "label": "Show banner on mobile product screens",
       "visible_if": "{{ section.settings.menu_type_desktop == 'product_mega' }}"
     },
     {
