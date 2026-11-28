@@ -9,6 +9,7 @@
     aria-hidden="true"
     hidden
   ></div>
+  {{ section.settings.menu.links | json }}
   <nav class="pm-nav" aria-label="{{ 'sections.header.menu' | t }}">
     <ul class="list-menu list-menu--inline" role="list">
       {% for parent in section.settings.menu.links %}
