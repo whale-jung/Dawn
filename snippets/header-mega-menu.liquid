@@ -7,7 +7,7 @@
   {% render 'header-mega-menu' %}
 {% enddoc %}
 <script>
-  console.log("header", {{ section.settings.menu.links }});
+  console.log("header", {{ section.settings.menu.links | json }});
 </script>
 <nav class="header__inline-menu">
   <ul class="list-menu list-menu--inline" role="list">
