@@ -9,7 +9,7 @@
 <script>
   console.log("header", {{ section.settings.menu.links | json }});
   {% for link in section.settings.menu.links %}
-    {{ link |json }}
+    console.log('link', {{ link |json }})
   {% endfor %}
 </script>
 <nav class="header__inline-menu">
