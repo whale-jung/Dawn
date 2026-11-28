@@ -219,8 +219,6 @@
       if section.settings.menu != blank
         if section.settings.menu_type_desktop == 'dropdown'
           render 'header-dropdown-menu'
-        elsif section.settings.menu_type_desktop == 'mega-product'
-          render 'header-mega-product-menu'
         elsif section.settings.menu_type_desktop != 'drawer'
           render 'header-mega-menu'
         endif
@@ -570,10 +568,6 @@
         {
           "value": "drawer",
           "label": "t:sections.header.settings.menu_type_desktop.options__3.label"
-        },
-        {
-          "value": "mega-product",
-          "label": "Product mega menu"
         }
       ],
       "default": "dropdown",
